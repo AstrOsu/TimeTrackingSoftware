@@ -3,3 +3,4 @@
 **/*.jpg
 **/*.obj
 .idea/
+out/
