@@ -1,22 +1,32 @@
 
 package timetracker;
 
+import java.sql.Time;
+import java.time.Duration;
+import java.util.Date;
+
 /**
  *
  * @author GG46195x
  */
 public class timeBlock 
 {
-    double startTime; 
-    double duration; 
+    Date startDate; 
+    Time startTime; 
+    Duration duration; 
     String description; 
     
-    public void setStartTime(double startTime)
+    public void setStartTime(Time startTime)
     {
         this.startTime = startTime; 
     }
     
-    public void setDuration(double duration)
+    public void setStartDate(Date startDate)
+    {
+        this.startDate = startDate; 
+    }
+    
+    public void setDuration(Duration duration)
     {
         this.duration = duration; 
     }
@@ -26,12 +36,12 @@ public class timeBlock
         this.description = description; 
     }
     
-    public double getStartTime()
+    public Date getStartTime()
     {
         return startTime; 
     }
     
-    public double getDuration()
+    public Duration getDuration()
     {
         return duration; 
     }
@@ -41,8 +51,8 @@ public class timeBlock
         return description;   
     }
     
-    public double getEndTime()
+    /*public Date getEndDate()
     {
-        return startTime+duration; 
-    }
+        return startTime+duration; // have to figure out how to find duration of day/ time mix
+    }*/
 }
