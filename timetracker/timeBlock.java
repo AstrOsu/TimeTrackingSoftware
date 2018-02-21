@@ -12,13 +12,21 @@ import java.util.Date;
 public class timeBlock 
 {
     Date startDate; 
-    Time startTime; 
+    long startTime, endTime;
     Duration duration; 
     String description; 
-    
-    public void setStartTime(Time startTime)
+
+    public timeBlock(){}
+
+
+    public void setStartTime(long startTime)
     {
         this.startTime = startTime; 
+    }
+
+    public void setEndTime(long endTime)
+    {
+        this.endTime = endTime;
     }
     
     public void setStartDate(Date startDate)
@@ -36,14 +44,14 @@ public class timeBlock
         this.description = description; 
     }
     
-    public Date getStartTime()
+    public Date getStartDate()
     {
-        return startTime; 
+        return startDate;
     }
     
-    public Duration getDuration()
+    public long getDuration()
     {
-        return duration; 
+        return endTime - startTime;
     }
     
     public String getDescription()
