@@ -1,12 +1,16 @@
 package timetracker;
 
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.Buffer;
 import java.util.Scanner;
 
 public class Main
 {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         Scanner keyb = new Scanner(System.in);
         System.out.println("Type anything to begin timeblock:");
 
@@ -34,7 +38,12 @@ public class Main
             Thread.sleep(1000);
         }
 
-
         keyb.close();
+
+        /**
+         * exporting to txt files
+         */
+        export exp = new export();
+        exp.txtFile();
     }
 }
