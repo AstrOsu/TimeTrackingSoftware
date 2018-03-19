@@ -11,16 +11,15 @@ public class Main
     public static void main(String[] args) throws InterruptedException, IOException {
 
         Scanner keyb = new Scanner(System.in);
-        System.out.println("Type anything to begin timeblock:");
-
         /**
          * exporting to txt files
          */
         //export exp = new export();
         //exp.txtFile();
 
-        timeBlock tb = new timeBlock(Calendar.getInstance(), "First one plz work");
+        timeBlock tb = new timeBlock("First one plz work");
 
+        tb.start();
         System.out.println("Timer started, type anything to stop.  " +  tb.key);
 
         //while(!keyb.hasNext()) {}
@@ -31,7 +30,7 @@ public class Main
         while(!keyb.hasNext()) {}
         keyb.nextLine();
 
-        tb.setEndDate(Calendar.getInstance());
+        tb.stop();
 
         System.out.println("Timer Stopped.  Total duration: " + tb.getDuration() + " ms"  );
         System.out.println(tb.toString());

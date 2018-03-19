@@ -1,6 +1,7 @@
 
 package timetracker;
 
+import java.io.*;
 import java.util.*;
 
 /**
@@ -93,5 +94,11 @@ public class blockStorage
         }
 
         return hashMap;
+    }
+
+    public void importFile(String fileName)
+    {
+        File f = new File(fileName);
+
     }
 }

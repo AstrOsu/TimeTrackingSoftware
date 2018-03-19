@@ -23,6 +23,12 @@ public class timeBlock
         description = d;
     }
 
+    public timeBlock(String d)
+    {
+        description = d;
+    }
+
+
     public String toString()
     {
         String blockString = "";
@@ -30,51 +36,45 @@ public class timeBlock
         blockString += "Start Date: " + startDate.getTime() + "; End Date: " + endDate.getTime() + "; Description: " + description + "\n";
         return blockString;
     }
-
-    public void setStartTime(long startTime)
-    {
-        this.startTime = startTime; 
-    }
-
-    public void setEndTime(long endTime)
-    {
-        this.endTime = endTime;
-    }
     
-    public void setStartDate(Calendar startDate)
+    private void setStartDate(Calendar sd)
     {
-        this.startDate = startDate; 
+        startDate = sd;
+        startTime = startDate.getTimeInMillis();
     }
 
-    public void setEndDate(Calendar ed)
+    private void setEndDate(Calendar ed)
     {
         endDate = ed;
-        duration = endDate.getTimeInMillis() - startDate.getTimeInMillis();
+        endTime = endDate.getTimeInMillis();
     }
-    
-    public void setDuration(long duration)
+
+    public void start()
     {
-        this.duration = duration; 
+        setStartDate(Calendar.getInstance());
+        key = getKey(startDate);
+    }
+
+    public void stop()
+    {
+        setEndDate(Calendar.getInstance());
+        duration = endTime - startTime;
+    }
+
+    public long getDuration()
+    {
+        return duration;
     }
     
     public void setDescription(String description)
     {
         this.description = description; 
     }
-    
-    public Calendar getStartDate()
-    {
-        return startDate;
-    }
-    
-    public long getDuration()
-    {
-        return endTime - startTime;
-    }
+
     
     public String getDescription()
     {
-        return description;   
+        return description;
     }
 
     public int getKey(Calendar c)
