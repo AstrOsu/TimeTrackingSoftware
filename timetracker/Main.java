@@ -1,27 +1,32 @@
 package timetracker;
 
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.Buffer;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main
 {
 
     public static void main(String[] args) throws InterruptedException, IOException {
+
         Scanner keyb = new Scanner(System.in);
         System.out.println("Type anything to begin timeblock:");
 
-        timeBlock tb = new timeBlock();
+        /**
+         * exporting to txt files
+         */
+        export exp = new export();
+        exp.txtFile();
+
+        timeBlock tb = new timeBlock(Calendar.getInstance());
 
         while(!keyb.hasNext()) {}
 
         keyb.nextLine();
-        tb.setStartTime(System.currentTimeMillis());
+        //tb.setStartDate( Date());
 
-        System.out.println("Timer started, type anything to stop.");
+        System.out.println("Timer started, type anything to stop.  " +  tb.getKey(tb.startDate));
 
         while(!keyb.hasNext()) {}
 
@@ -39,11 +44,5 @@ public class Main
         }
 
         keyb.close();
-
-        /**
-         * exporting to txt files
-         */
-        export exp = new export();
-        exp.txtFile();
     }
 }

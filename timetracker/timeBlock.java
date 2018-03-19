@@ -1,9 +1,8 @@
 
 package timetracker;
 
-import java.sql.Time;
 import java.time.Duration;
-import java.util.Date;
+import java.util.*;
 
 /**
  *
@@ -11,12 +10,12 @@ import java.util.Date;
  */
 public class timeBlock 
 {
-    Date startDate; 
+    Calendar startDate;
     long startTime, endTime;
     Duration duration; 
     String description; 
 
-    public timeBlock(){}
+    public timeBlock(Calendar c){startDate = c;}
 
 
     public void setStartTime(long startTime)
@@ -29,7 +28,7 @@ public class timeBlock
         this.endTime = endTime;
     }
     
-    public void setStartDate(Date startDate)
+    public void setStartDate(Calendar startDate)
     {
         this.startDate = startDate; 
     }
@@ -44,7 +43,7 @@ public class timeBlock
         this.description = description; 
     }
     
-    public Date getStartDate()
+    public Calendar getStartDate()
     {
         return startDate;
     }
@@ -57,6 +56,11 @@ public class timeBlock
     public String getDescription()
     {
         return description;   
+    }
+
+    public int getKey(Calendar c)
+    {
+        return (c.get(c.DATE)*1000000) + ((c.get(c.MONTH)+1)*10000) + (c.get(c.YEAR));
     }
     
     /*public Date getEndDate()
