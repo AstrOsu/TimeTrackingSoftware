@@ -16,30 +16,36 @@ public class Main
         /**
          * exporting to txt files
          */
-        export exp = new export();
-        exp.txtFile();
+        //export exp = new export();
+        //exp.txtFile();
 
-        timeBlock tb = new timeBlock(Calendar.getInstance());
+        timeBlock tb = new timeBlock(Calendar.getInstance(), "First one plz work");
 
-        while(!keyb.hasNext()) {}
+        System.out.println("Timer started, type anything to stop.  " +  tb.key);
 
-        keyb.nextLine();
+        //while(!keyb.hasNext()) {}
+
+        //keyb.nextLine();
         //tb.setStartDate( Date());
 
-        System.out.println("Timer started, type anything to stop.  " +  tb.getKey(tb.startDate));
-
         while(!keyb.hasNext()) {}
-
         keyb.nextLine();
-        tb.setEndTime(System.currentTimeMillis());
 
-        System.out.println("Timer Stopped.  Total duration: " + tb.getDuration() + " ms" +
-                "\nProgram will close in 10 seconds.");
+        tb.setEndDate(Calendar.getInstance());
+
+        System.out.println("Timer Stopped.  Total duration: " + tb.getDuration() + " ms"  );
+        System.out.println(tb.toString());
+
+
+        blockStorage bs = new blockStorage();
+
+        bs.addBlock(tb);
+
+        System.out.println(bs.toString());
 
         for(int i = 10; i > 0; i--)
         {
             System.out.println(i);
-
             Thread.sleep(1000);
         }
 

@@ -10,13 +10,26 @@ import java.util.*;
  */
 public class timeBlock 
 {
-    Calendar startDate;
+    Calendar startDate, endDate;
     long startTime, endTime;
-    Duration duration; 
-    String description; 
+    long duration;
+    String description;
+    public int key;
 
-    public timeBlock(Calendar c){startDate = c;}
+    public timeBlock(Calendar c, String d)
+    {
+        startDate = c;
+        key = getKey(c);
+        description = d;
+    }
 
+    public String toString()
+    {
+        String blockString = "";
+
+        blockString += "Start Date: " + startDate.getTime() + "; End Date: " + endDate.getTime() + "; Description: " + description + "\n";
+        return blockString;
+    }
 
     public void setStartTime(long startTime)
     {
@@ -32,8 +45,14 @@ public class timeBlock
     {
         this.startDate = startDate; 
     }
+
+    public void setEndDate(Calendar ed)
+    {
+        endDate = ed;
+        duration = endDate.getTimeInMillis() - startDate.getTimeInMillis();
+    }
     
-    public void setDuration(Duration duration)
+    public void setDuration(long duration)
     {
         this.duration = duration; 
     }
@@ -62,7 +81,13 @@ public class timeBlock
     {
         return (c.get(c.DATE)*1000000) + ((c.get(c.MONTH)+1)*10000) + (c.get(c.YEAR));
     }
-    
+
+
+    public int getKey()
+    {
+        return key;
+    }
+
     /*public Date getEndDate()
     {
         return startTime+duration; // have to figure out how to find duration of day/ time mix
