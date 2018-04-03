@@ -1,5 +1,5 @@
 
-package my.timetracker;
+package timetracker;
 import java.io.*;
 import java.nio.Buffer;
 import java.util.*;

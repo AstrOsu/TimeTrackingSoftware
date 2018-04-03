@@ -5,9 +5,9 @@ import java.io.*;
 import java.nio.Buffer;
 import java.util.*;
 import java.awt.*;
-import java.swing.*;
+//import java.swing.*;
 
-public class Main
+public class TestMain
 {
 
     public static void main(String[] args) throws InterruptedException, IOException {
