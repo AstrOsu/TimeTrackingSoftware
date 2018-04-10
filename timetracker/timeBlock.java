@@ -22,6 +22,16 @@ public class timeBlock
         key = getKey(c);
         description = d;
     }
+    
+    public timeBlock(Calendar start, Calendar end, String d)
+    {
+        startDate = start;
+        startTime = startDate.getTimeInMillis();
+        endDate = end; 
+        endTime = endDate.getTimeInMillis();
+        key = getKey(start);
+        description = d;
+    }
 
     public timeBlock(String d)
     {
@@ -42,11 +52,21 @@ public class timeBlock
         startDate = sd;
         startTime = startDate.getTimeInMillis();
     }
+    
+    public Calendar getStartDate()
+    {
+        return startDate; 
+    }
 
     private void setEndDate(Calendar ed)
     {
         endDate = ed;
         endTime = endDate.getTimeInMillis();
+    }
+    
+    public Calendar getEndDate()
+    {
+        return endDate; 
     }
 
     public void start()
