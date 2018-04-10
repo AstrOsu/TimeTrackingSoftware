@@ -71,7 +71,16 @@ public class blockStorage
     
     public void mergeBlocks(timeBlock firstBlock, timeBlock secondBlock, String description)
     {
-        timeBlock merged = new timeBlock(firstBlock.getStartDate(), secondBlock.getEndDate(), description);
+        timeBlock merged;
+        if (description == null || description.isEmpty())
+        {
+            if (firstBlock.description == null || firstBlock.description.isEmpty())
+                merged = new timeBlock(firstBlock.getStartDate(), secondBlock.getEndDate(), secondBlock.description);
+            else
+                merged = new timeBlock(firstBlock.getStartDate(), secondBlock.getEndDate(), firstBlock.description);
+        }
+        else
+            merged = new timeBlock(firstBlock.getStartDate(), secondBlock.getEndDate(), description);
         removeBlock(firstBlock); 
         removeBlock(secondBlock); 
         addBlock(merged); 
