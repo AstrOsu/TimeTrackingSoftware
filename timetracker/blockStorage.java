@@ -68,6 +68,14 @@ public class blockStorage
         }
         return null;
     }
+    
+    public void mergeBlocks(timeBlock firstBlock, timeBlock secondBlock, String description)
+    {
+        timeBlock merged = new timeBlock(firstBlock.getStartDate(), secondBlock.getEndDate(), description);
+        removeBlock(firstBlock); 
+        removeBlock(secondBlock); 
+        addBlock(merged); 
+    }
 
     public String toString()
     {
