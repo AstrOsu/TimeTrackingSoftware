@@ -1,7 +1,6 @@
 
 package timetracker;
 
-import java.time.Duration;
 import java.util.*;
 
 /**
@@ -15,6 +14,7 @@ public class timeBlock
     long duration;
     String description;
     public int key;
+    //State state;
 
     public timeBlock(Calendar c, String d)
     {
@@ -73,6 +73,7 @@ public class timeBlock
     {
         setStartDate(Calendar.getInstance());
         key = getKey(startDate);
+        //state = new workingState(); 
     }
 
     public void stop()
@@ -108,8 +109,4 @@ public class timeBlock
         return key;
     }
 
-    /*public Date getEndDate()
-    {
-        return startTime+duration; // have to figure out how to find duration of day/ time mix
-    }*/
 }
