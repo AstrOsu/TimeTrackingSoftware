@@ -14,7 +14,6 @@ public class timeBlock
     long duration;
     String description;
     public int key;
-    //State state;
 
     public timeBlock(Calendar c, String d)
     {
@@ -57,6 +56,22 @@ public class timeBlock
     {
         return startDate; 
     }
+    
+    public String getStartString()
+    {
+        //return string representation of start date 
+    }
+    
+     public String getEndString()
+    {
+        //return string representation of start date 
+    }
+    
+     public String getDurationString()
+    {
+        //return string representation of start date 
+    }
+    
 
     private void setEndDate(Calendar ed)
     {
