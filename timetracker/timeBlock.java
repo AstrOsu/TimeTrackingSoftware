@@ -2,6 +2,7 @@
 package timetracker;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -9,25 +10,25 @@ import java.util.*;
  */
 public class timeBlock 
 {
-    Calendar startDate, endDate;
-    long startTime, endTime;
+    Calendar start, end;
+    //long startTime, endTime;
     long duration;
     String description;
     public int key;
 
     public timeBlock(Calendar c, String d)
     {
-        startDate = c;
+        start = c;
         key = getKey(c);
         description = d;
     }
     
     public timeBlock(Calendar start, Calendar end, String d)
     {
-        startDate = start;
-        startTime = startDate.getTimeInMillis();
-        endDate = end; 
-        endTime = endDate.getTimeInMillis();
+        this.start = start;
+        //startTime = startDate.getTimeInMillis();
+        this.end = end; 
+        //endTime = endDate.getTimeInMillis();
         key = getKey(start);
         description = d;
     }
@@ -36,70 +37,79 @@ public class timeBlock
     {
         description = d;
     }
-
-
-    public String toString()
+    
+    private void setStart(Calendar start)
     {
-        String blockString = "";
+        this.start = start;
 
-        blockString += "Start Date: " + startDate.getTime() + "; End Date: " + endDate.getTime() + "; Description: " + description + "\n";
-        return blockString;
     }
     
-    private void setStartDate(Calendar sd)
+    public Calendar getStart()
     {
-        startDate = sd;
-        startTime = startDate.getTimeInMillis();
-    }
-    
-    public Calendar getStartDate()
-    {
-        return startDate; 
+        return start; 
     }
     
     public String getStartString()
     {
-        //return string representation of start date 
+        String startString = "";
+        startString += start.get(Calendar.MONTH)+1 + "/" + start.get(Calendar.DAY_OF_MONTH) + 
+                     "/" + start.get(Calendar.YEAR); 
+        return startString; 
     }
     
      public String getEndString()
     {
-        //return string representation of start date 
+        String endString = "";
+        endString+= end.get(Calendar.MONTH)+1 + "/" + end.get(Calendar.DAY_OF_MONTH) + 
+                     "/" + end.get(Calendar.YEAR); 
+        return endString;
     }
     
-     public String getDurationString()
+     public long getDurationinMinutes()
     {
-        //return string representation of start date 
+        return TimeUnit.MILLISECONDS.toMinutes(duration); 
+        
     }
+     
+     public String getStartTimeString(){
+         String startTimeString=""; 
+         startTimeString+= start.get(Calendar.HOUR) + ":" + start.get(Calendar.MINUTE) + ":" + start.get(Calendar.SECOND); 
+         return startTimeString; 
+     }
     
+     public String getEndTimeString(){
+         String endTimeString=""; 
+         endTimeString+= end.get(Calendar.HOUR) + ":" + end.get(Calendar.MINUTE) + ":" + end.get(Calendar.SECOND); 
+         return endTimeString; 
+     }
 
-    private void setEndDate(Calendar ed)
+    private void setEnd(Calendar ed)
     {
-        endDate = ed;
-        endTime = endDate.getTimeInMillis();
+        end = ed;
     }
     
-    public Calendar getEndDate()
+    public Calendar getEnd()
     {
-        return endDate; 
+        return end; 
     }
 
+    /* Grant said we really dont need start and stop 
+    but commenting out just in case 
     public void start()
     {
-        setStartDate(Calendar.getInstance());
-        key = getKey(startDate);
-        //state = new workingState(); 
+        setStart(Calendar.getInstance());
+        key = getKey(start);
     }
 
     public void stop()
     {
-        setEndDate(Calendar.getInstance());
+        setEnd(Calendar.getInstance());
         duration = endTime - startTime;
     }
-
+*/
     public long getDuration()
     {
-        return duration;
+       return start.getTimeInMillis() - end.getTimeInMillis(); 
     }
     
     public void setDescription(String description)
