@@ -5,10 +5,46 @@
  */
 package timetracker;
 
+import java.awt.event.KeyListener;
+import java.awt.event.*; 
+
 /**
  *
  * @author GG46195x
  */
-public class activityObserver {
+public class activityObserver extends MouseAdapter implements  KeyListener{
+   
+    long timeSinceLastAction; 
+    
+    public long sinceMoved(){
+        return System.currentTimeMillis() - timeSinceLastAction; 
+    }
+    
+    public void mouseClicked(MouseEvent e)
+    {       
+        timeSinceLastAction = System.currentTimeMillis(); 
+    }
+    
+    public void mouseMoved(MouseEvent e)
+    {
+        timeSinceLastAction = System.currentTimeMillis(); 
+    }
+    
+    public void keyReleased(KeyEvent e)
+    {
+        timeSinceLastAction = System.currentTimeMillis(); 
+    }
+    
+    public void keyPressed(KeyEvent e)
+    {
+        timeSinceLastAction = System.currentTimeMillis(); 
+    }
+    
+    public void keyTyped(KeyEvent e)
+    {
+        timeSinceLastAction = System.currentTimeMillis(); 
+    }
+    
     
 }
+
