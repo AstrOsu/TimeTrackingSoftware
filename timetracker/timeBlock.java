@@ -51,20 +51,21 @@ public class timeBlock
     
     public String getStartString()
     {
-        String startString = "";
-        startString += start.get(Calendar.MONTH)+1 + "/" + start.get(Calendar.DAY_OF_MONTH) + 
-                     "/" + start.get(Calendar.YEAR); 
-        return startString; 
+        return start.get(Calendar.MONTH) + 1 + "/" + start.get(Calendar.DAY_OF_MONTH) + "/" + start.get(Calendar.YEAR);
     }
     
-     public String getEndString()
+    public String getEndString()
     {
-        String endString = "";
-        endString+= end.get(Calendar.MONTH)+1 + "/" + end.get(Calendar.DAY_OF_MONTH) + 
-                     "/" + end.get(Calendar.YEAR); 
-        return endString;
+        return end.get(Calendar.MONTH) + 1 + "/" + end.get(Calendar.DAY_OF_MONTH) + "/" + end.get(Calendar.YEAR);
+
     }
-    
+
+    @Override
+    public String toString()
+    {
+        return start.getTime().toString() + " " + end.getTime().toString();
+    }
+
      public long getDurationinMinutes()
     {
         return TimeUnit.MILLISECONDS.toMinutes(duration); 
@@ -72,15 +73,11 @@ public class timeBlock
     }
      
      public String getStartTimeString(){
-         String startTimeString=""; 
-         startTimeString+= start.get(Calendar.HOUR) + ":" + start.get(Calendar.MINUTE) + ":" + start.get(Calendar.SECOND); 
-         return startTimeString; 
+         return start.get(Calendar.HOUR) + ":" + start.get(Calendar.MINUTE) + ":" + start.get(Calendar.SECOND);
      }
     
      public String getEndTimeString(){
-         String endTimeString=""; 
-         endTimeString+= end.get(Calendar.HOUR) + ":" + end.get(Calendar.MINUTE) + ":" + end.get(Calendar.SECOND); 
-         return endTimeString; 
+         return end.get(Calendar.HOUR) + ":" + end.get(Calendar.MINUTE) + ":" + end.get(Calendar.SECOND);
      }
 
     private void setEnd(Calendar ed)

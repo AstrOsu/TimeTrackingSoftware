@@ -44,7 +44,7 @@ public class blockStorage
         {
             timeBlock elem = lIter.next();
 
-            if(elem.startDate.compareTo(block.startDate) > 0)
+            if(elem.start.getTime().compareTo(block.start.getTime()) > 0)
             {
                 l1.add(lIter.nextIndex() - 1, block);
                 return;
@@ -61,8 +61,7 @@ public class blockStorage
            LinkedList l1 = timeBlocks.get(block.key);
            try
            {
-               timeBlock tb = (timeBlock) l1.remove(l1.indexOf(block));
-               return tb;
+               return (timeBlock) l1.remove(l1.indexOf(block));
            }
            catch (IndexOutOfBoundsException e)
            {
@@ -78,12 +77,12 @@ public class blockStorage
         if (description == null || description.isEmpty())
         {
             if (firstBlock.description == null || firstBlock.description.isEmpty())
-                merged = new timeBlock(firstBlock.getStartDate(), secondBlock.getEndDate(), secondBlock.description);
+                merged = new timeBlock(firstBlock.start, secondBlock.end, secondBlock.description);
             else
-                merged = new timeBlock(firstBlock.getStartDate(), secondBlock.getEndDate(), firstBlock.description);
+                merged = new timeBlock(firstBlock.start, secondBlock.end, firstBlock.description);
         }
         else
-            merged = new timeBlock(firstBlock.getStartDate(), secondBlock.getEndDate(), description);
+            merged = new timeBlock(firstBlock.start, secondBlock.end, description);
         removeBlock(firstBlock); 
         removeBlock(secondBlock); 
         addBlock(merged); 
@@ -100,15 +99,11 @@ public class blockStorage
             Integer key = (Integer) iter.next();
             LinkedList l1 = timeBlocks.get(key);
 
-            hashMap += "DATE: " + key + " Blocks: " + l1.size() + "\r\n";
+            hashMap += key + " " + l1.size() + "\r\n";
 
-            ListIterator<timeBlock> lIter = l1.listIterator();
-
-            while(lIter.hasNext())
+            for (timeBlock elem : (Iterable<timeBlock>) l1)
             {
-                timeBlock elem = lIter.next();
-
-                hashMap += "[" + (lIter.nextIndex() -1) + "] " +  elem.toString();
+                hashMap += elem.toString();
             }
         }
 
@@ -149,7 +144,6 @@ public class blockStorage
                     Calendar temp = Calendar.getInstance();
                     temp.setTime(date);
                 }
-                tb.
                 catch (ParseException e) {System.out.println("Unable to parse input file.");}
             }
         }
