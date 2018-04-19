@@ -14,7 +14,7 @@ public class timeBlock
     //long startTime, endTime;
     long duration;
     String description;
-    public int key;
+    private int key = 0;
 
     public timeBlock(Calendar c, String d)
     {
@@ -64,7 +64,7 @@ public class timeBlock
     @Override
     public String toString()
     {
-        return start.getTime().toString() + "\r\n" + end.getTime().toString();
+        return start.getTime().toString() + "\r\n" + end.getTime().toString() + "\r\n" + description;
     }
 
      public long getDurationinMinutes()
@@ -124,6 +124,11 @@ public class timeBlock
 
     public int getKey()
     {
+        if(start == null)
+            return -1;
+        if(key == 0)
+            key = getKey(start);
+
         return key;
     }
 
