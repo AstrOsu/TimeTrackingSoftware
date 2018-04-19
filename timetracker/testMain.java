@@ -39,10 +39,14 @@ public class TestMain
 
 
         blockStorage bs = new blockStorage();
-
         bs.addBlock(tb);
 
         System.out.println(bs.toString());
+
+        FileOutputStream outputStream = new FileOutputStream("uhplzwork.txt");
+        byte[] strToBytes = bs.toString().getBytes();
+        outputStream.write(strToBytes);
+        outputStream.close();
 
         for(int i = 10; i > 0; i--)
         {

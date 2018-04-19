@@ -2,6 +2,8 @@
 package timetracker;
 
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -11,6 +13,7 @@ import java.util.*;
  */
 public class blockStorage
 {
+    timeBlock currentTB;
     HashMap<Integer, LinkedList<timeBlock>> timeBlocks;
 
     public blockStorage(){
@@ -88,17 +91,16 @@ public class blockStorage
 
     public String toString()
     {
-        String hashMap = "";
-
         Set keys = timeBlocks.keySet();
         Iterator iter = keys.iterator();
+        String hashMap = "" + keys.size() + "\r\n";
 
         while(iter.hasNext())
         {
             Integer key = (Integer) iter.next();
             LinkedList l1 = timeBlocks.get(key);
 
-            hashMap += "DATE: " + key + "\n";
+            hashMap += "DATE: " + key + " Blocks: " + l1.size() + "\r\n";
 
             ListIterator<timeBlock> lIter = l1.listIterator();
 
@@ -113,9 +115,43 @@ public class blockStorage
         return hashMap;
     }
 
-    public void importFile(String fileName)
+    public void importFile(String fileName) throws FileNotFoundException
     {
         File f = new File(fileName);
 
+        if(!f.exists() || !f.canRead())
+        {
+            System.out.println("Error:  File " + fileName + " doesn't exist or can't be read.");
+            return;
+        }
+
+        Scanner sc = new Scanner(f);
+        int days = sc.nextInt();
+        int key, blocks;//, year, month, day, hour, minute, seccond;
+        timeBlock tb;
+        Date date;
+        SimpleDateFormat pattern = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy;");
+        Calendar cal = Calendar.getInstance();
+
+        for (int i = 0; i < days; i++)
+        {
+            sc.next();
+            key = sc.nextInt();
+            sc.next();
+            blocks = sc.nextInt();
+
+            for(int j = 0; j < blocks; j++)
+            {
+                sc.next(); sc.next(); sc.next();
+                String s = sc.next() + sc.next() + sc.next() + sc.next() + sc.next() + sc.next();
+                try {
+                    date = pattern.parse(s);
+                    Calendar temp = Calendar.getInstance();
+                    temp.setTime(date);
+                }
+                tb.
+                catch (ParseException e) {System.out.println("Unable to parse input file.");}
+            }
+        }
     }
 }
