@@ -103,7 +103,7 @@ public class blockStorage
 
             for (timeBlock elem : (Iterable<timeBlock>) l1)
             {
-                hashMap += elem.toString();
+                hashMap += elem.toString() + "\r\n";
             }
         }
 

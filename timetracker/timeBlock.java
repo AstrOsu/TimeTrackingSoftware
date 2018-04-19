@@ -38,10 +38,11 @@ public class timeBlock
         description = d;
     }
     
-    private void setStart(Calendar start)
-    {
-        this.start = start;
+    private void setStart(Calendar start) { this.start = start;}
 
+    private void setEnd(Calendar ed)
+    {
+        end = ed;
     }
     
     public Calendar getStart()
@@ -63,7 +64,7 @@ public class timeBlock
     @Override
     public String toString()
     {
-        return start.getTime().toString() + " " + end.getTime().toString();
+        return start.getTime().toString() + "\r\n" + end.getTime().toString();
     }
 
      public long getDurationinMinutes()
@@ -79,11 +80,6 @@ public class timeBlock
      public String getEndTimeString(){
          return end.get(Calendar.HOUR) + ":" + end.get(Calendar.MINUTE) + ":" + end.get(Calendar.SECOND);
      }
-
-    private void setEnd(Calendar ed)
-    {
-        end = ed;
-    }
     
     public Calendar getEnd()
     {
@@ -91,7 +87,7 @@ public class timeBlock
     }
 
     /* Grant said we really dont need start and stop 
-    but commenting out just in case 
+    but commenting out just in case */
     public void start()
     {
         setStart(Calendar.getInstance());
@@ -101,9 +97,9 @@ public class timeBlock
     public void stop()
     {
         setEnd(Calendar.getInstance());
-        duration = endTime - startTime;
+        duration = end.getTimeInMillis() - start.getTimeInMillis();
     }
-*/
+
     public long getDuration()
     {
        return start.getTimeInMillis() - end.getTimeInMillis(); 
