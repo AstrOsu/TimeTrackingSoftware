@@ -31,6 +31,7 @@ public class Main extends javax.swing.JFrame
         }*/
 
         //writes b.toString to a file
+
         FileOutputStream outputStream = new FileOutputStream("storage.txt");
         byte[] strToBytes = b.toString().getBytes();
         outputStream.write(strToBytes);
