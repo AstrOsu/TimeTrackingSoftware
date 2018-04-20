@@ -70,6 +70,16 @@ public class timeBlock
         return TimeUnit.MILLISECONDS.toMinutes(duration); 
         
     }
+    
+     public String getDurationString() {
+        long hours = TimeUnit.MILLISECONDS.toHours(getDuration());
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(getDuration()) -
+                (TimeUnit.MILLISECONDS.toHours(getDuration())* 60);
+        long seconds = TimeUnit.MILLISECONDS.toSeconds(getDuration()) -
+                (TimeUnit.MILLISECONDS.toMinutes(getDuration()) *60);
+        String string = String.format("%d:%02d:%02d", hours, minutes, seconds);
+        return string;
+    }
      
      public String getStartTimeString(){
          String startTimeString=""; 
@@ -109,7 +119,7 @@ public class timeBlock
 */
     public long getDuration()
     {
-       return start.getTimeInMillis() - end.getTimeInMillis(); 
+       return end.getTimeInMillis() - start.getTimeInMillis(); 
     }
     
     public void setDescription(String description)

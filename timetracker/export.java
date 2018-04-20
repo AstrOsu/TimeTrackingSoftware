@@ -1,28 +1,78 @@
 package timetracker;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.InvalidPathException;
-import java.nio.file.Paths;
-import java.util.LinkedList;
+import java.io.*;
+import java.nio.file.*;
+import java.util.*;
+
+/**
+ * Class to check valid file paths and export files.
+ */
 
 public class export {
 
     /**
-     * Prints out entries from the blockStorage hash map in to a .txt file
-     * @param path
+     * Prints out object's entries from the hash map into a .txt file
+     * @param timeblock, path
      * @throws IOException
      */
+
     public void txtFile(blockStorage timeblock, String path) throws IOException {
         if (isValidPath(path)) {
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path + "/timeBlock.txt")));
-            for (Integer key : timeblock.timeBlocks.keySet()) {
-                LinkedList keyval = timeblock.timeBlocks.get(key);
-                out.println(keyval.peek());
-                keyval.pop();
+
+            List alKeys = new ArrayList(timeblock.timeBlocks.keySet());
+            Collections.reverse(alKeys);
+            Iterator iter = alKeys.iterator();
+
+            String output = "";
+
+            while(iter.hasNext()) {
+                Integer key = (Integer) iter.next();
+                LinkedList list = timeblock.timeBlocks.get(key);
+                for (timeBlock elem : (Iterable<timeBlock>) list) {
+                    output += output.format("%-15s%-15s%-15s%-15s%-15s\n",
+                            elem.getStartString(), elem.getStartTimeString(),
+                            elem.getEndString(), elem.getEndTimeString(),
+                            elem.getDurationString());
+                    output += "Description: " + elem.getDescription() + "\n\n";
+                }
             }
+            Formatter formatter = new Formatter();
+            out.println(formatter.format("%-15s%-15s%-15s%-15s%-15s", "Start Date",
+                    "Start Time", "End Date", "End Time", "Duration"));
+            out.print(output);
+            out.flush();
+            out.close();
+        }
+    }
+
+    /**
+     * Prints out object's entries from the hash map into a .csv file
+     * @param timeblock, path
+     * @throws IOException
+     */
+
+    public void csvFile(blockStorage timeblock, String path) throws IOException {
+        if (isValidPath(path)) {
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path + "/timeBlock.csv")));
+
+            List alKeys = new ArrayList(timeblock.timeBlocks.keySet());
+            Collections.reverse(alKeys);
+            Iterator iter = alKeys.iterator();
+
+            String output = "";
+
+            while(iter.hasNext()) {
+                Integer key = (Integer) iter.next();
+                LinkedList list = timeblock.timeBlocks.get(key);
+                for (timeBlock elem : (Iterable<timeBlock>) list) {
+                    output += elem.getStartString() + "," + elem.getStartTimeString() + "," +
+                            elem.getEndString() + "," + elem.getEndTimeString() + "," +
+                            elem.getDurationString() + "," + elem.getDescription() + "\n";
+                }
+            }
+            out.println("Start Date, Start Time , End Date, End Time, Duration, Description ");
+            out.print(output);
             out.flush();
             out.close();
         }
@@ -33,6 +83,7 @@ public class export {
      * @param path
      * @return true if valid path, else false
      */
+
     public static boolean isValidPath(String path) {
         try {
             Paths.get(path);
