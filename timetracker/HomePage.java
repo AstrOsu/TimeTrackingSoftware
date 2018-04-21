@@ -1,3 +1,9 @@
+
+import java.util.Calendar;
+import timetracker.*;
+import java.util.*;
+import java.awt.*;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -171,9 +177,36 @@ public class HomePage extends javax.swing.JFrame
 
     private void startTrackingMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_startTrackingMouseClicked
     {//GEN-HEADEREND:event_startTrackingMouseClicked
-        if(isRunning){
-            //start tracking
+        if(!isRunning){
             isRunning = true;
+            Calendar blockStart = Calendar.getInstance();
+            activityObserver observ = new activityObserver(blockStart.getTimeInMillis());
+            boolean isWorking = true; //If a time block is currently running
+            
+            while(isRunning){
+            
+                if (observ.sinceMoved() > 600000 && !isWorking) {
+                    Calendar end = Calendar.getInstance(); 
+                    end.add(Calendar.SECOND, -600); 
+                    BS.addBlock(new timeBlock(blockStart, end, "Hello"));
+                    isWorking = false;
+                } else if (!isWorking && observ.sinceMoved() < 2) {
+                    blockStart = Calendar.getInstance();
+                    isWorking = true;
+                } else {
+
+                }
+                try {
+                    Thread.sleep(2);
+                } catch (Exception e) {
+                    continue;
+                }
+            }
+            if(isWorking){
+                BS.addBlock(new timeBlock(blockStart, Calendar.getInstance(), "Hello"));
+                
+            }
+            
         }
         
     }//GEN-LAST:event_startTrackingMouseClicked

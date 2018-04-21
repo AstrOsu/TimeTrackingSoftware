@@ -16,8 +16,16 @@ public class activityObserver extends MouseAdapter implements  KeyListener{
    
     long timeSinceLastAction; 
     
+    public activityObserver(long now){
+        timeSinceLastAction = now;
+    }
+    
     public long sinceMoved(){
         return System.currentTimeMillis() - timeSinceLastAction; 
+    }
+    
+    public void setTimeSinceLastAction(long now){
+        timeSinceLastAction = now;
     }
     
     public void mouseClicked(MouseEvent e)
