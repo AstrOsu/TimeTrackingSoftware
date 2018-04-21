@@ -41,7 +41,7 @@ public class blockStorage
         {
             timeBlock elem = lIter.next();
 
-            if(elem.startDate.compareTo(block.startDate) > 0)
+            if(elem.start.compareTo(block.start) > 0)
             {
                 l1.add(lIter.nextIndex() - 1, block);
                 return;
