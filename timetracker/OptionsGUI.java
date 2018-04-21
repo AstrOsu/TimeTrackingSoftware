@@ -96,7 +96,7 @@ public class OptionsGUI extends javax.swing.JFrame
         }
         //</editor-fold>
         String[] color = new String[]{"red", "blue", "green"};
-        jComboBox1.
+        //jComboBox1.
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
         {
