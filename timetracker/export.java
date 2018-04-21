@@ -88,7 +88,7 @@ public class export {
         try {
             Paths.get(path);
         } catch (InvalidPathException | NullPointerException ex) {
-            return false;
+            throw new NullPointerException("File path is invalid, please try again.");
         }
         return true;
     }
