@@ -22,19 +22,19 @@ public class blockStorage
 
     public boolean contains(timeBlock block)
     {
-        if(!timeBlocks.containsKey(block.key))
+        if(!timeBlocks.containsKey(block.getKey()))
             return false;
-        LinkedList l1 = timeBlocks.get(block.key);
+        LinkedList l1 = timeBlocks.get(block.getKey());
         return l1.contains(block);
     }
 
     public void addBlock(timeBlock block)
     {
-        if(!timeBlocks.containsKey(block.key))
+        if(!timeBlocks.containsKey(block.getKey()))
         {
-            timeBlocks.put(block.key, new LinkedList<timeBlock>());
+            timeBlocks.put(block.getKey(), new LinkedList<timeBlock>());
         }
-        LinkedList l1 = timeBlocks.get(block.key);
+        LinkedList l1 = timeBlocks.get(block.getKey());
         if(l1.contains(block))
             return;
 
@@ -44,25 +44,24 @@ public class blockStorage
         {
             timeBlock elem = lIter.next();
 
-            if(elem.start.compareTo(block.start) > 0)
+            if(elem.start.getTime().compareTo(block.start.getTime()) > 0)
             {
                 l1.add(lIter.nextIndex() - 1, block);
                 return;
             }
         }
 
-        timeBlocks.get(block.key).addLast(block);
+        timeBlocks.get(block.getKey()).addLast(block);
     }
 
     public timeBlock removeBlock(timeBlock block)
     {
-        if(timeBlocks.containsKey(block.key))
+        if(timeBlocks.containsKey(block.getKey()))
         {
-           LinkedList l1 = timeBlocks.get(block.key);
+           LinkedList l1 = timeBlocks.get(block.getKey());
            try
            {
-               timeBlock tb = (timeBlock) l1.remove(l1.indexOf(block));
-               return tb;
+               return (timeBlock) l1.remove(l1.indexOf(block));
            }
            catch (IndexOutOfBoundsException e)
            {
@@ -78,12 +77,12 @@ public class blockStorage
         if (description == null || description.isEmpty())
         {
             if (firstBlock.description == null || firstBlock.description.isEmpty())
-                merged = new timeBlock(firstBlock.getStart(), secondBlock.getEnd(), secondBlock.description);
+                merged = new timeBlock(firstBlock.start, secondBlock.end, secondBlock.description);
             else
-                merged = new timeBlock(firstBlock.getStart(), secondBlock.getEnd(), firstBlock.description);
+                merged = new timeBlock(firstBlock.start, secondBlock.end, firstBlock.description);
         }
         else
-            merged = new timeBlock(firstBlock.getStart(), secondBlock.getEnd(), description);
+            merged = new timeBlock(firstBlock.start, secondBlock.end, description);
         removeBlock(firstBlock); 
         removeBlock(secondBlock); 
         addBlock(merged); 
@@ -100,15 +99,11 @@ public class blockStorage
             Integer key = (Integer) iter.next();
             LinkedList l1 = timeBlocks.get(key);
 
-            hashMap += "DATE: " + key + " Blocks: " + l1.size() + "\r\n";
+            hashMap += key + " " + l1.size() + "\r\n";
 
-            ListIterator<timeBlock> lIter = l1.listIterator();
-
-            while(lIter.hasNext())
+            for (timeBlock elem : (Iterable<timeBlock>) l1)
             {
-                timeBlock elem = lIter.next();
-
-                hashMap += "[" + (lIter.nextIndex() -1) + "] " +  elem.toString();
+                hashMap += elem.toString() + "\r\n";
             }
         }
 
@@ -126,32 +121,50 @@ public class blockStorage
         }
 
         Scanner sc = new Scanner(f);
+        String desc = "";
         int days = sc.nextInt();
         int key, blocks;//, year, month, day, hour, minute, seccond;
-        timeBlock tb;
-        Date date;
-        SimpleDateFormat pattern = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy;");
-        Calendar cal = Calendar.getInstance();
+        Date date = new Date();
+        SimpleDateFormat pattern = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
 
         for (int i = 0; i < days; i++)
         {
-            sc.next();
             key = sc.nextInt();
-            sc.next();
             blocks = sc.nextInt();
+            sc.nextLine();
+
+            System.out.println(key + " " + blocks);
 
             for(int j = 0; j < blocks; j++)
             {
-                sc.next(); sc.next(); sc.next();
-                String s = sc.next() + sc.next() + sc.next() + sc.next() + sc.next() + sc.next();
-                try {
-                    date = pattern.parse(s);
-                    Calendar temp = Calendar.getInstance();
-                    temp.setTime(date);
+                Calendar start = Calendar.getInstance(), end = Calendar.getInstance();
+                try
+                {
+                    date = pattern.parse(sc.nextLine());
+                    start.setTime(date);
+                    //System.out.println(date.toString());
+
+                    date = pattern.parse(sc.nextLine());
+                    end.setTime(date);
+                    //System.out.print(" " + date.toString());
+
+
+                    desc = sc.nextLine();
+                    //System.out.print(" " + desc);
+
+                    timeBlock tb = new timeBlock(start, end, desc);
+                    addBlock(tb);
+
+                    if(key != tb.getKey())
+                        System.out.println("Error: Key mismatch");
                 }
-                tb.
-                catch (ParseException e) {System.out.println("Unable to parse input file.");}
+                catch (ParseException e)
+                {
+                    System.out.println("Unable to parse input file.");
+                    System.out.println(date.toString());
+                }
             }
+            System.out.println();
         }
     }
 }

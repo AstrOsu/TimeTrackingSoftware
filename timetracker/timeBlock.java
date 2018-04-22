@@ -14,7 +14,7 @@ public class timeBlock
     //long startTime, endTime;
     long duration;
     String description;
-    public int key;
+    private int key = 0;
 
     public timeBlock(Calendar c, String d)
     {
@@ -38,10 +38,11 @@ public class timeBlock
         description = d;
     }
     
-    private void setStart(Calendar start)
-    {
-        this.start = start;
+    private void setStart(Calendar start) { this.start = start;}
 
+    private void setEnd(Calendar ed)
+    {
+        end = ed;
     }
     
     public Calendar getStart()
@@ -51,20 +52,21 @@ public class timeBlock
     
     public String getStartString()
     {
-        String startString = "";
-        startString += start.get(Calendar.MONTH)+1 + "/" + start.get(Calendar.DAY_OF_MONTH) + 
-                     "/" + start.get(Calendar.YEAR); 
-        return startString; 
+        return start.get(Calendar.MONTH) + 1 + "/" + start.get(Calendar.DAY_OF_MONTH) + "/" + start.get(Calendar.YEAR);
     }
     
-     public String getEndString()
+    public String getEndString()
     {
-        String endString = "";
-        endString+= end.get(Calendar.MONTH)+1 + "/" + end.get(Calendar.DAY_OF_MONTH) + 
-                     "/" + end.get(Calendar.YEAR); 
-        return endString;
+        return end.get(Calendar.MONTH) + 1 + "/" + end.get(Calendar.DAY_OF_MONTH) + "/" + end.get(Calendar.YEAR);
+
     }
-    
+
+    @Override
+    public String toString()
+    {
+        return start.getTime().toString() + "\r\n" + end.getTime().toString() + "\r\n" + description;
+    }
+
      public long getDurationinMinutes()
     {
         return TimeUnit.MILLISECONDS.toMinutes(duration); 
@@ -82,21 +84,12 @@ public class timeBlock
     }
      
      public String getStartTimeString(){
-         String startTimeString=""; 
-         startTimeString+= start.get(Calendar.HOUR) + ":" + start.get(Calendar.MINUTE) + ":" + start.get(Calendar.SECOND); 
-         return startTimeString; 
+         return start.get(Calendar.HOUR) + ":" + start.get(Calendar.MINUTE) + ":" + start.get(Calendar.SECOND);
      }
     
      public String getEndTimeString(){
-         String endTimeString=""; 
-         endTimeString+= end.get(Calendar.HOUR) + ":" + end.get(Calendar.MINUTE) + ":" + end.get(Calendar.SECOND); 
-         return endTimeString; 
+         return end.get(Calendar.HOUR) + ":" + end.get(Calendar.MINUTE) + ":" + end.get(Calendar.SECOND);
      }
-
-    private void setEnd(Calendar ed)
-    {
-        end = ed;
-    }
     
     public Calendar getEnd()
     {
@@ -104,7 +97,7 @@ public class timeBlock
     }
 
     /* Grant said we really dont need start and stop 
-    but commenting out just in case 
+    but commenting out just in case */
     public void start()
     {
         setStart(Calendar.getInstance());
@@ -114,9 +107,9 @@ public class timeBlock
     public void stop()
     {
         setEnd(Calendar.getInstance());
-        duration = endTime - startTime;
+        duration = end.getTimeInMillis() - start.getTimeInMillis();
     }
-*/
+
     public long getDuration()
     {
        return end.getTimeInMillis() - start.getTimeInMillis(); 
@@ -141,6 +134,11 @@ public class timeBlock
 
     public int getKey()
     {
+        if(start == null)
+            return -1;
+        if(key == 0)
+            key = getKey(start);
+
         return key;
     }
 

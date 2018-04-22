@@ -7,7 +7,7 @@ import java.util.*;
 import java.awt.*;
 //import java.swing.*;
 
-public class TestMain
+public class testMain
 {
 
     public static void main(String[] args) throws InterruptedException, IOException {
@@ -22,7 +22,7 @@ public class TestMain
         timeBlock tb = new timeBlock("First one plz work");
 
         tb.start();
-        System.out.println("Timer started, type anything to stop.  " +  tb.key);
+        System.out.println("Timer started, type anything to stop.  " +  tb.getKey());
 
         //while(!keyb.hasNext()) {}
 

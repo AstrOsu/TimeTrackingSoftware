@@ -1,17 +1,32 @@
+package timetracker;
+
+
+import java.io.*;
 /**
  *
  *
  */
 public class Main
 {
-    public static void main(String[] args)
-    {
-        //Do initialization stuff
-        
-        
+
+
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) throws InterruptedException, IOException {
+        blockStorage b = new blockStorage();
+        //timeBlock tb = new timeBlock("" + System.currentTimeMillis());
+        b.importFile("TimeBlocks.txt");
+
         //Make GUI
         HomePage home = new HomePage();
         String[] hello = new String[5];
         HomePage.main(hello);
+
+        FileOutputStream outputStream = new FileOutputStream("storage.txt");
+        byte[] strToBytes = b.toString().getBytes();
+        outputStream.write(strToBytes);
+        outputStream.close();
     }
 }
