@@ -5,6 +5,12 @@
  */
 package timetracker;
 
+import java.awt.event.ActionEvent;
+import java.util.Calendar;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JFrame;
+
 /**
  *
  * @author anitaimoh
@@ -157,6 +163,11 @@ public class testgui2 extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         jTabbedPane1.setToolTipText("Menu");
@@ -602,6 +613,10 @@ public class testgui2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton3MouseClicked
 
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -630,12 +645,33 @@ public class testgui2 extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        JFrame testgui2 = new JFrame(); 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new testgui2().setVisible(true);
+                //new testgui2().setVisible(true);
+                
+                testgui2.setVisible(true); 
+            
+            
+            Action createBlock = new AbstractAction()
+            {
+            public void actionPerformed(ActionEvent e)
+            {
+                //Calendar endDate = Calendar.getInstance(); 
+                //long end = endDate.getTimeInMillis() - 60000; 
+                //endDate.setTimeInMillis(end); 
+                //timeBlock block = new timeBlock(new inactivityListener().getStart(), end, "New Block");
+                //BS.addBlock(block); 
+                
             }
-        });
+            }; 
+            inactivityListener listener = new inactivityListener(testgui2,createBlock, 1); 
+            listener.start(); 
+            }
+            });
     }
+    
+    //private blockStorage BS; 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField blockLabel;
