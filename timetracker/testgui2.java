@@ -606,7 +606,7 @@ public class testgui2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jToggleButton1MouseClicked
 
     private void jToggleButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton3MouseClicked
@@ -620,7 +620,7 @@ public class testgui2 extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -655,10 +655,12 @@ public class testgui2 extends javax.swing.JFrame {
                 {
                 public void actionPerformed(ActionEvent e)
                 {
+                    
                     Calendar endDate = Calendar.getInstance(); 
                     long end = endDate.getTimeInMillis() - 60000; 
-                    endDate.setTimeInMillis(end); 
-                    timeBlock block = new timeBlock(new inactivityListener().getStart(), end, "New Block");
+                    endDate.setTimeInMillis(end);  
+                    Calendar start = listener.getStart(); 
+                    timeBlock block = new timeBlock(start, endDate, "New Block");
                     BS.addBlock(block); 
                 
                 }
@@ -675,7 +677,7 @@ public class testgui2 extends javax.swing.JFrame {
             
     
     
-    //private blockStorage BS; */
+    private blockStorage BS; 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField blockLabel;

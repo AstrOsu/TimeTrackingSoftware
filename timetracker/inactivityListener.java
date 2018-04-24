@@ -7,13 +7,14 @@ package timetracker;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Calendar;
 import javax.swing.*;
 
 /**
  *
  * @author GG46195x
  */
-class InactivityListener implements ActionListener, AWTEventListener
+class inactivityListener implements ActionListener, AWTEventListener
 {
 	public final static long KEY_EVENTS = AWTEvent.KEY_EVENT_MASK;
 
@@ -22,7 +23,7 @@ class InactivityListener implements ActionListener, AWTEventListener
 
 	public final static long USER_EVENTS = KEY_EVENTS + MOUSE_EVENTS;
         
-        //public Calendar start; 
+        public Calendar start; 
         
 	private Window window;
 	private Action action;
@@ -34,7 +35,7 @@ class InactivityListener implements ActionListener, AWTEventListener
 	 *  Use a default inactivity interval of 1 minute and listen for
 	 *  USER_EVENTS
 	 */
-	public InactivityListener(Window window, Action action)
+	public inactivityListener(Window window, Action action)
 	{
 		this(window, action, 1);
 	}
@@ -42,7 +43,7 @@ class InactivityListener implements ActionListener, AWTEventListener
 	/*
 	 *	Specify the inactivity interval and listen for USER_EVENTS
 	 */
-	public InactivityListener(Window window, Action action, int interval)
+	public inactivityListener(Window window, Action action, int interval)
 	{
 		this(window, action, interval, USER_EVENTS);
 	}
@@ -50,7 +51,7 @@ class InactivityListener implements ActionListener, AWTEventListener
 	/*
 	 *  Specify the inactivity interval and the events to listen for
 	 */
-	public InactivityListener(Window window, Action action, int minutes, long eventMask)
+	public inactivityListener(Window window, Action action, int minutes, long eventMask)
 	{
 		this.window = window;
 		setAction( action );
@@ -97,13 +98,13 @@ class InactivityListener implements ActionListener, AWTEventListener
 	public void start()
 	{
 		timer.setInitialDelay(interval);
-                //start = Calendar.getInstance(); 
+                start = Calendar.getInstance(); 
 		timer.setRepeats(false);
 		timer.start();
 		Toolkit.getDefaultToolkit().addAWTEventListener(this, eventMask);
 	}
         
-        /*public Calendar getStart()
+        public Calendar getStart()
         {
             return start; 
         }
