@@ -6,18 +6,18 @@ import java.nio.Buffer;
 import java.util.*;
 import java.awt.*;
 //import java.swing.*;
-
+/*
 public class TestMain
 {
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
         Scanner keyb = new Scanner(System.in);
-        /**
+        
          * exporting to txt files
-         */
-        //export exp = new export();
-        //exp.txtFile();
+         
+        export exp = new export();
+        exp.txtFile();
 
         timeBlock tb = new timeBlock("First one plz work");
 
@@ -53,3 +53,4 @@ public class TestMain
         keyb.close();
     }
 }
+*/

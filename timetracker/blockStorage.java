@@ -41,7 +41,7 @@ public class blockStorage
         {
             timeBlock elem = lIter.next();
 
-            if(elem.start.compareTo(block.start) > 0)
+            //if(elem.startDate.compareTo(block.startDate) > 0)
             {
                 l1.add(lIter.nextIndex() - 1, block);
                 return;
@@ -75,12 +75,12 @@ public class blockStorage
         if (description == null || description.isEmpty())
         {
             if (firstBlock.description == null || firstBlock.description.isEmpty())
-                merged = new timeBlock(firstBlock.getStart(), secondBlock.getEnd(), secondBlock.description);
+                merged = new timeBlock(firstBlock.getStartDate(), secondBlock.getEndDate(), secondBlock.description);
             else
-                merged = new timeBlock(firstBlock.getStart(), secondBlock.getEnd(), firstBlock.description);
+                merged = new timeBlock(firstBlock.getStartDate(), secondBlock.getEndDate(), firstBlock.description);
         }
         else
-            merged = new timeBlock(firstBlock.getStart(), secondBlock.getEnd(), description);
+            merged = new timeBlock(firstBlock.getStartDate(), secondBlock.getEndDate(), description);
         removeBlock(firstBlock); 
         removeBlock(secondBlock); 
         addBlock(merged); 
