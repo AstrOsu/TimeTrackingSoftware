@@ -6,16 +6,10 @@
 package timetracker;
 
 import java.awt.event.ActionEvent;
+import javax.swing.*;
+import javax.swing.table.*;
 import java.util.*;
-import java.io.FileNotFoundException;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
-import javax.swing.JList;
-import java.util.Collections; 
-import javax.swing.table.DefaultTableModel;
-import timetracker.testgui2; 
+import java.io.*;
 
 /**
  *
