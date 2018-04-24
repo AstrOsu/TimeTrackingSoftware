@@ -1,11 +1,10 @@
 package timetracker;
-
-
-import java.io.*;
 /**
  *
  *
  */
+
+import timetracker.*;
 public class Main
 {
 
@@ -21,14 +20,8 @@ public class Main
         b.importFile("TimeBlocks.txt");
 
         //Make GUI
-        HomePage home = new HomePage();
+        testgui2 home = new testgui2();
         String[] hello = new String[5];
-        HomePage.main(hello);
-
-        //Save Hashmap to a file
-        FileOutputStream outputStream = new FileOutputStream("storage.txt");
-        byte[] strToBytes = b.toString().getBytes();
-        outputStream.write(strToBytes);
-        outputStream.close();
+        home.main(hello);
     }
 }

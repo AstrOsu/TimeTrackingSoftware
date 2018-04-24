@@ -3,7 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package timetracker;public class ExportGUI extends javax.swing.JFrame
+package timetracker;
+/**
+ *
+ * @author Leon
+ */
+public class ExportGUI extends javax.swing.JFrame
 {
 
     /**
