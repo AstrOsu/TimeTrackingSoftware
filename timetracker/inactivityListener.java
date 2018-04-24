@@ -23,7 +23,7 @@ class InactivityListener implements ActionListener, AWTEventListener
 
 	public final static long USER_EVENTS = KEY_EVENTS + MOUSE_EVENTS;
         
-        public Calendar start; 
+        //public Calendar start; 
         
 	private Window window;
 	private Action action;
@@ -98,13 +98,13 @@ class InactivityListener implements ActionListener, AWTEventListener
 	public void start()
 	{
 		timer.setInitialDelay(interval);
-                start = Calendar.getInstance(); 
-		timer.setRepeats(true);
+                //start = Calendar.getInstance(); 
+		timer.setRepeats(false);
 		timer.start();
 		Toolkit.getDefaultToolkit().addAWTEventListener(this, eventMask);
 	}
         
-        public Calendar getStart()
+        /*public Calendar getStart()
         {
             return start; 
         }

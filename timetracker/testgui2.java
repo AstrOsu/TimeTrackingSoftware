@@ -645,33 +645,38 @@ public class testgui2 extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        JFrame testgui2 = new JFrame(); 
+        //JFrame testgui2 = new JFrame(); 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new testgui2().setVisible(true);
+                JFrame testgui2 = new JFrame(); 
+                testgui2.setVisible(true);
                 
-                testgui2.setVisible(true); 
-            
-            
-            Action createBlock = new AbstractAction()
-            {
-            public void actionPerformed(ActionEvent e)
-            {
+                Action createBlock = new AbstractAction()
+                {
+                public void actionPerformed(ActionEvent e)
+                {
+                    JFrame frame = (JFrame)e.getSource();
+                    frame.dispose();
                 //Calendar endDate = Calendar.getInstance(); 
                 //long end = endDate.getTimeInMillis() - 60000; 
                 //endDate.setTimeInMillis(end); 
                 //timeBlock block = new timeBlock(new inactivityListener().getStart(), end, "New Block");
                 //BS.addBlock(block); 
                 
+                }
+                }; 
+                inactivityListener listener = new inactivityListener(testgui2,createBlock, 1); 
+                listener.start(); 
+                }
+                });
+            
             }
-            }; 
-            inactivityListener listener = new inactivityListener(testgui2,createBlock, 1); 
-            listener.start(); 
-            }
-            });
-    }
+
+       
+            
     
-    //private blockStorage BS; 
+    
+    //private blockStorage BS; */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField blockLabel;

@@ -15,6 +15,16 @@ import java.awt.event.*;
 public class activityObserver extends MouseAdapter implements  KeyListener{
    
     long timeSinceLastAction; 
+    int interval; 
+    
+    public activityObserver(){
+        timeSinceLastAction = System.currentTimeMillis(); 
+    }
+    
+    public void setInterval(int interval)
+    {
+        
+    }
     
     public long sinceMoved(){
         return System.currentTimeMillis() - timeSinceLastAction; 
