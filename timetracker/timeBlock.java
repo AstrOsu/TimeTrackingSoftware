@@ -142,8 +142,7 @@ public class timeBlock
 
         return key;
     }
-    
-    @Override
+    /*
     public String toString() 
     { 
         String blockString = ""; 
@@ -154,6 +153,6 @@ public class timeBlock
                 "; End Time: "+ getEndTimeString()
                 + "; Description: " + description + "\n"; 
         return blockString; 
-    } 
+    } */
 
 }

@@ -14,7 +14,7 @@ public class Main
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) throws InterruptedException, IOException {
+    public static void main(String args[]) throws InterruptedException {
         //Create and populate blockStorage
         //blockStorage b = new blockStorage();
         //timeBlock tb = new timeBlock("" + System.currentTimeMillis());
