@@ -648,20 +648,18 @@ public class testgui2 extends javax.swing.JFrame {
         //JFrame testgui2 = new JFrame(); 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JFrame testgui2 = new JFrame(); 
+                JFrame testgui2 = new testgui2(); 
                 testgui2.setVisible(true);
                 
                 Action createBlock = new AbstractAction()
                 {
                 public void actionPerformed(ActionEvent e)
                 {
-                    JFrame frame = (JFrame)e.getSource();
-                    frame.dispose();
-                //Calendar endDate = Calendar.getInstance(); 
-                //long end = endDate.getTimeInMillis() - 60000; 
-                //endDate.setTimeInMillis(end); 
-                //timeBlock block = new timeBlock(new inactivityListener().getStart(), end, "New Block");
-                //BS.addBlock(block); 
+                    Calendar endDate = Calendar.getInstance(); 
+                    long end = endDate.getTimeInMillis() - 60000; 
+                    endDate.setTimeInMillis(end); 
+                    timeBlock block = new timeBlock(new inactivityListener().getStart(), end, "New Block");
+                    BS.addBlock(block); 
                 
                 }
                 }; 
@@ -669,9 +667,10 @@ public class testgui2 extends javax.swing.JFrame {
                 listener.start(); 
                 }
                 });
+                
+                
             
             }
-
        
             
     
