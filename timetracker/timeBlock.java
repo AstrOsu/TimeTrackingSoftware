@@ -2,6 +2,7 @@
 package timetracker;
 
 import java.util.*;
+import static java.util.Calendar.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -143,5 +144,17 @@ public class timeBlock
     {
         return key;
     }
+    
+    public String toString() 
+    { 
+        String blockString = ""; 
+ 
+        blockString += "Start Day: "+ getStartString() + 
+                "; StartTime: "+ getStartTimeString() +  
+                "; End Day: " + getEndString() + 
+                "; End Time: "+ getEndTimeString()
+                + "; Description: " + description + "\n"; 
+        return blockString; 
+    } 
 
 }
