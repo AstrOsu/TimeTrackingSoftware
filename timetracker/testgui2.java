@@ -650,7 +650,8 @@ public class testgui2 extends javax.swing.JFrame {
             public void run() {
                 JFrame testgui2 = new testgui2(); 
                 testgui2.setVisible(true);
-                
+                Calendar start = Calendar.getInstance(); 
+                blockStorage BS = new blockStorage(); 
                 Action createBlock = new AbstractAction()
                 {
                 public void actionPerformed(ActionEvent e)
@@ -658,14 +659,15 @@ public class testgui2 extends javax.swing.JFrame {
                     
                     Calendar endDate = Calendar.getInstance(); 
                     long end = endDate.getTimeInMillis() - 60000; 
-                    endDate.setTimeInMillis(end);  
-                    Calendar start = listener.getStart(); 
+                    endDate.setTimeInMillis(end);   
                     timeBlock block = new timeBlock(start, endDate, "New Block");
                     BS.addBlock(block); 
+                    System.out.println("Added: START: "+block.getStartTimeString()+" END:"+block.getEndTimeString()); 
+                    System.out.println(BS.toString()); 
                 
                 }
                 };
-                InactivityListener listener = new InactivityListener(testgui2,createBlock, 1);
+                inactivityListener listener = new inactivityListener(testgui2,createBlock, 20);
                 listener.start(); 
                 }
                 });

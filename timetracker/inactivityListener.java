@@ -72,7 +72,7 @@ class inactivityListener implements ActionListener, AWTEventListener
 	 */
 	public void setInterval(int minutes)
 	{
-		setIntervalInMillis(minutes * 60000);
+		setIntervalInMillis(minutes * 1000);
 	}
 
 	/*
