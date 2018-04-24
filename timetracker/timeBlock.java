@@ -143,5 +143,13 @@ public class timeBlock
     {
         return key;
     }
+    
+    public String toString() 
+    { 
+        String blockString = ""; 
+ 
+        blockString += "Start Date: " + start.getTime() + "; End Date: " + end.getTime() + "; Description: " + description + "\n"; 
+        return blockString; 
+    } 
 
 }

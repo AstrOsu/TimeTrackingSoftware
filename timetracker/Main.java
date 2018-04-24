@@ -15,6 +15,6 @@ public class Main
         //Make GUI
         testgui2 home = new testgui2();
         String[] hello = new String[5];
-        testgui2.main(hello);
+        home.main(hello);
     }
 }
