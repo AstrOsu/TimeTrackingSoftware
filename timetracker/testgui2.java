@@ -6,8 +6,7 @@
 package timetracker;
 
 import java.awt.event.ActionEvent;
-import java.util.Calendar;
-import static java.util.Calendar.*;
+import java.util.*;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.DefaultListModel;
@@ -334,16 +333,16 @@ public class testgui2 extends javax.swing.JFrame {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         addedTimeBlocksList.setForeground(new java.awt.Color(0, 0, 6));
-        addedTimeBlocksList.setModel(new javax.swing.AbstractListModel<String>() {
+        addedTimeBlocksList.setModel(new javax.swing.AbstractListModel<String>()
+        {
             String[] strings;
 
-            Set keys = BS.keySet();
+            /*Set keys = BS.timeBlocks.keySet();
             Iterator iter = keys.iterator();
-
             while(iter.hasNext())
             {
                 Integer key = (Integer) iter.next();
-                LinkedList l1 = BS.get(key);
+                LinkedList l1 = BS.timeBlocks.get(key);
 
                 ListIterator<timeBlock> lIter = l1.listIterator();
 
@@ -353,7 +352,7 @@ public class testgui2 extends javax.swing.JFrame {
 
                     strings[lIter.nextIndex()-1] = elem.getDescription();
                 }
-            }
+            }*/
 
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }

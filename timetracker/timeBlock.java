@@ -142,7 +142,7 @@ public class timeBlock
 
         return key;
     }
-    
+    /*
     public String toString() 
     { 
         String blockString = ""; 
@@ -153,6 +153,6 @@ public class timeBlock
                 "; End Time: "+ getEndTimeString()
                 + "; Description: " + description + "\n"; 
         return blockString; 
-    } 
+    } */
 
 }

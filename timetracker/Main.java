@@ -13,11 +13,11 @@ public class Main
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) throws InterruptedException, IOException {
+    public static void main(String args[]) throws InterruptedException {
         //Create and populate blockStorage
-        blockStorage b = new blockStorage();
+        //blockStorage b = new blockStorage();
         //timeBlock tb = new timeBlock("" + System.currentTimeMillis());
-        b.importFile("TimeBlocks.txt");
+        //b.importFile("TimeBlocks.txt");
 
         //Make GUI
         testgui2 home = new testgui2();
