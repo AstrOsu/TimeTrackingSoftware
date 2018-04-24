@@ -5,8 +5,9 @@
  */
 package timetracker;
 
-import java.awt.event.KeyListener;
+import java.awt.Window;
 import java.awt.event.*; 
+import javax.swing.*;
 
 /**
  *
@@ -15,14 +16,12 @@ import java.awt.event.*;
 public class activityObserver extends MouseAdapter implements  KeyListener{
    
     long timeSinceLastAction; 
+    Window window; 
+    Action action; 
     int interval; 
     
     public activityObserver(){
-        timeSinceLastAction = System.currentTimeMillis(); 
-    }
-    
-    public void setInterval(int interval)
-    {
+        timeSinceLastAction = System.currentTimeMillis();
         
     }
     
