@@ -2,6 +2,7 @@
  *
  *
  */
+import timetracker.*;
 public class Main
 {
     public static void main(String[] args)
@@ -10,8 +11,8 @@ public class Main
         
         
         //Make GUI
-        HomePage home = new HomePage();
+        testgui2 home = new testgui2();
         String[] hello = new String[5];
-        HomePage.main(hello);
+        testgui2.main(hello);
     }
 }
