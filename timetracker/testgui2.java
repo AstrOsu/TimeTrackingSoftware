@@ -6,6 +6,7 @@
 package timetracker;
 
 import java.awt.event.ActionEvent;
+import java.io.FileNotFoundException;
 import java.util.*;
 import static java.util.Calendar.*;
 import javax.swing.AbstractAction;
@@ -15,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import java.util.Collections; 
 import javax.swing.table.DefaultTableModel;
+import timetracker.testgui2; 
 
 /**
  *
@@ -536,6 +538,11 @@ public class testgui2 extends javax.swing.JFrame {
                 jToggleButton1MouseClicked(evt);
             }
         });
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         jToggleButton2.setText("PAUSE");
 
@@ -737,8 +744,39 @@ public class testgui2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        //BS = new blockStorage();
+        //timeBlock tb = new timeBlock("" + System.currentTimeMillis());
+        try{
+        BS.importFile("TimeBlocks.txt");
+        }
+        catch(FileNotFoundException e)
+        {
+            System.out.println("Cant find file"); 
+        }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+                Calendar start = Calendar.getInstance(); 
+                Action createBlock = new AbstractAction()
+                {
+                public void actionPerformed(ActionEvent e)
+                {
+                    System.out.println(BS.toString());
+                    Calendar endDate = Calendar.getInstance(); 
+                    long end = endDate.getTimeInMillis() - 60000; 
+                    endDate.setTimeInMillis(end);   
+                    timeBlock block = new timeBlock(start, endDate, "New Block");
+                    list1.add("New Block");
+                    BS.addBlock(block); 
+                    System.out.println("Added: START: "+block.getStartTimeString()+" END:"+block.getEndTimeString()); 
+                    System.out.println(BS.toString()); 
+                
+                }
+                };
+                inactivityListener listener = new inactivityListener(new testgui2(),createBlock, 20);
+                listener.start();     // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -773,26 +811,7 @@ public class testgui2 extends javax.swing.JFrame {
             public void run() {
                 JFrame testgui2 = new testgui2(); 
                 testgui2.setVisible(true);
-                Calendar start = Calendar.getInstance(); 
                 
-                Action createBlock = new AbstractAction()
-                {
-                public void actionPerformed(ActionEvent e)
-                {
-                    System.out.println(BS.toString());
-                    Calendar endDate = Calendar.getInstance(); 
-                    long end = endDate.getTimeInMillis() - 60000; 
-                    endDate.setTimeInMillis(end);   
-                    timeBlock block = new timeBlock(start, endDate, "New Block");
-                    list1.add("New Block");
-                    BS.addBlock(block); 
-                    System.out.println("Added: START: "+block.getStartTimeString()+" END:"+block.getEndTimeString()); 
-                    System.out.println(BS.toString()); 
-                
-                }
-                };
-                inactivityListener listener = new inactivityListener(testgui2,createBlock, 20);
-                listener.start(); 
             }
              }); 
                /* while(working)
