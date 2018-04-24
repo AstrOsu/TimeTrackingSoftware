@@ -10,7 +10,9 @@ import java.util.Calendar;
 import static java.util.Calendar.*;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JList;
 
 /**
  *
@@ -65,7 +67,7 @@ public class testgui2 extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        addedTimeBlocksList = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -265,7 +267,7 @@ public class testgui2 extends javax.swing.JFrame {
                     .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jButton2)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,7 +292,7 @@ public class testgui2 extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(189, Short.MAX_VALUE)
+                .addContainerGap(131, Short.MAX_VALUE)
                 .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(109, 109, 109))
         );
@@ -311,7 +313,7 @@ public class testgui2 extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(260, Short.MAX_VALUE)
+                .addContainerGap(202, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
                     .addComponent(jColorChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -331,14 +333,33 @@ public class testgui2 extends javax.swing.JFrame {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jList1.setForeground(new java.awt.Color(0, 0, 6));
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Project 1", "Project 2", "Project 3", "Project 4", "Project 5" };
+        addedTimeBlocksList.setForeground(new java.awt.Color(0, 0, 6));
+        addedTimeBlocksList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings;
+
+            Set keys = BS.keySet();
+            Iterator iter = keys.iterator();
+
+            while(iter.hasNext())
+            {
+                Integer key = (Integer) iter.next();
+                LinkedList l1 = BS.get(key);
+
+                ListIterator<timeBlock> lIter = l1.listIterator();
+
+                while(lIter.hasNext())
+                {
+                    timeBlock elem = lIter.next();
+
+                    strings[lIter.nextIndex()-1] = elem.getDescription();
+                }
+            }
+
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList1.setBounds(new java.awt.Rectangle(10, 10, 39, 136));
-        jScrollPane1.setViewportView(jList1);
+        addedTimeBlocksList.setBounds(new java.awt.Rectangle(10, 10, 39, 136));
+        jScrollPane1.setViewportView(addedTimeBlocksList);
 
         jLabel2.setText("Added Timeblocks");
 
@@ -686,6 +707,10 @@ public class testgui2 extends javax.swing.JFrame {
         timeBlock block = new timeBlock(start, end, description); 
         System.out.println(block.toString()); 
         BS.addBlock(block);
+        
+        // add block to list on side
+        
+        //addedTimeBlocksList.add(block.getDescription(), testgui2); 
         System.out.println(BS.toString());
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -739,6 +764,7 @@ public class testgui2 extends javax.swing.JFrame {
                 JFrame testgui2 = new testgui2(); 
                 testgui2.setVisible(true);
                 Calendar start = Calendar.getInstance(); 
+                DefaultListModel<String> addedBlocks = new DefaultListModel();  
                 Action createBlock = new AbstractAction()
                 {
                 public void actionPerformed(ActionEvent e)
@@ -772,6 +798,7 @@ public class testgui2 extends javax.swing.JFrame {
     private javax.swing.JSpinner Day;
     private javax.swing.JSpinner Month;
     private javax.swing.JSpinner Year;
+    private javax.swing.JList<String> addedTimeBlocksList;
     private javax.swing.JTextField blockLabel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -811,7 +838,6 @@ public class testgui2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
