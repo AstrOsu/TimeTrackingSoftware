@@ -664,8 +664,8 @@ public class testgui2 extends javax.swing.JFrame {
                 //BS.addBlock(block); 
                 
                 }
-                }; 
-                inactivityListener listener = new inactivityListener(testgui2,createBlock, 1); 
+                };
+                InactivityListener listener = new InactivityListener(testgui2,createBlock, 1);
                 listener.start(); 
                 }
                 });
