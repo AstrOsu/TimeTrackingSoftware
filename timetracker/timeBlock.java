@@ -62,11 +62,11 @@ public class timeBlock
 
     }
 
-    @Override
-    public String toString()
+    //@Override
+    /*public String toString()
     {
         return start.getTime().toString() + "\r\n" + end.getTime().toString() + "\r\n" + description;
-    }
+    }*/
 
      public long getDurationinMinutes()
     {
@@ -143,6 +143,7 @@ public class timeBlock
         return key;
     }
     
+    @Override
     public String toString() 
     { 
         String blockString = ""; 
