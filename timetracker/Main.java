@@ -16,9 +16,9 @@ public class Main
      */
     public static void main(String args[]) throws InterruptedException, IOException {
         //Create and populate blockStorage
-        blockStorage b = new blockStorage();
+        //blockStorage b = new blockStorage();
         //timeBlock tb = new timeBlock("" + System.currentTimeMillis());
-        b.importFile("TimeBlocks.txt");
+        //b.importFile("TimeBlocks.txt");
 
         //Make GUI
         testgui2 home = new testgui2();
