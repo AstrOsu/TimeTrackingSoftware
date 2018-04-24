@@ -7,11 +7,15 @@ package timetracker;
 
 import java.awt.event.ActionEvent;
 import java.util.*;
+import java.io.FileNotFoundException;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import java.util.Collections; 
+import javax.swing.table.DefaultTableModel;
+import timetracker.testgui2; 
 
 /**
  *
@@ -58,6 +62,7 @@ public class testgui2 extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel11 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jFileChooser2 = new javax.swing.JFileChooser();
         jPanel5 = new javax.swing.JPanel();
@@ -65,8 +70,6 @@ public class testgui2 extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        addedTimeBlocksList = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -92,6 +95,7 @@ public class testgui2 extends javax.swing.JFrame {
         Month = new javax.swing.JSpinner();
         Day = new javax.swing.JSpinner();
         Year = new javax.swing.JSpinner();
+        list1 = new java.awt.List();
         jPanel2 = new javax.swing.JPanel();
         jProgressBar1 = new javax.swing.JProgressBar();
         jSeparator2 = new javax.swing.JSeparator();
@@ -249,10 +253,18 @@ public class testgui2 extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("Import");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         jLayeredPane1.setLayer(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jPasswordField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -261,22 +273,30 @@ public class testgui2 extends javax.swing.JFrame {
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton2)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButton2)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(45, Short.MAX_VALUE))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3)
+                        .addGap(36, 36, 36))))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel11)
+                .addGap(7, 7, 7)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
                 .addContainerGap())
@@ -331,34 +351,6 @@ public class testgui2 extends javax.swing.JFrame {
         jTabbedPane1.addTab("Settings", jPanel5);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        addedTimeBlocksList.setForeground(new java.awt.Color(0, 0, 6));
-        addedTimeBlocksList.setModel(new javax.swing.AbstractListModel<String>()
-        {
-            String[] strings;
-
-            /*Set keys = BS.timeBlocks.keySet();
-            Iterator iter = keys.iterator();
-            while(iter.hasNext())
-            {
-                Integer key = (Integer) iter.next();
-                LinkedList l1 = BS.timeBlocks.get(key);
-
-                ListIterator<timeBlock> lIter = l1.listIterator();
-
-                while(lIter.hasNext())
-                {
-                    timeBlock elem = lIter.next();
-
-                    strings[lIter.nextIndex()-1] = elem.getDescription();
-                }
-            }*/
-
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        addedTimeBlocksList.setBounds(new java.awt.Rectangle(10, 10, 39, 136));
-        jScrollPane1.setViewportView(addedTimeBlocksList);
 
         jLabel2.setText("Added Timeblocks");
 
@@ -467,20 +459,17 @@ public class testgui2 extends javax.swing.JFrame {
                                 .addComponent(startSeconds, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(75, 75, 75)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(22, 22, 22))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(list1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(280, 280, 280))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1)
-                .addGap(12, 12, 12))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel5)
@@ -523,8 +512,15 @@ public class testgui2 extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(27, 27, 27))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel2)
+                        .addGap(3, 3, 3)
+                        .addComponent(list1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -539,6 +535,11 @@ public class testgui2 extends javax.swing.JFrame {
         jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jToggleButton1MouseClicked(evt);
+            }
+        });
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
             }
         });
 
@@ -559,6 +560,11 @@ public class testgui2 extends javax.swing.JFrame {
 
         jTextField1.setEditable(false);
         jTextField1.setText("30%");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jTextArea3.setEditable(false);
         jTextArea3.setColumns(20);
@@ -704,13 +710,16 @@ public class testgui2 extends javax.swing.JFrame {
         end.set((Integer)Year.getValue(), (Integer)Month.getValue(), (Integer)Day.getValue(), 
                 (Integer)endHours.getValue(), (Integer)endMinutes.getValue(), (Integer)endSeconds.getValue());
         timeBlock block = new timeBlock(start, end, description); 
-        System.out.println(block.toString()); 
+        System.out.println("JUST ADDED:"+ block.toString()); 
         BS.addBlock(block);
+        System.out.println("CURRENT BS:"+BS.toString()); 
+        
+        //add to log
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.addRow(new Object[]{block.getDescription(), block.getStartString(), block.getDurationString()});
         
         // add block to list on side
-        
-        //addedTimeBlocksList.add(block.getDescription(), testgui2); 
-        System.out.println(BS.toString());
+        list1.add(description);
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
@@ -728,6 +737,45 @@ public class testgui2 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        //BS = new blockStorage();
+        //timeBlock tb = new timeBlock("" + System.currentTimeMillis());
+        try{
+        BS.importFile("TimeBlocks.txt");
+        }
+        catch(FileNotFoundException e)
+        {
+            System.out.println("Cant find file"); 
+        }
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+                Calendar start = Calendar.getInstance(); 
+                Action createBlock = new AbstractAction()
+                {
+                public void actionPerformed(ActionEvent e)
+                {
+                    System.out.println(BS.toString());
+                    Calendar endDate = Calendar.getInstance(); 
+                    long end = endDate.getTimeInMillis() - 60000; 
+                    endDate.setTimeInMillis(end);   
+                    timeBlock block = new timeBlock(start, endDate, "New Block");
+                    list1.add("New Block");
+                    BS.addBlock(block); 
+                    System.out.println("Added: START: "+block.getStartTimeString()+" END:"+block.getEndTimeString()); 
+                    System.out.println(BS.toString()); 
+                
+                }
+                };
+                inactivityListener listener = new inactivityListener(new testgui2(),createBlock, 20);
+                listener.start();     // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -762,28 +810,15 @@ public class testgui2 extends javax.swing.JFrame {
             public void run() {
                 JFrame testgui2 = new testgui2(); 
                 testgui2.setVisible(true);
-                Calendar start = Calendar.getInstance(); 
-                DefaultListModel<String> addedBlocks = new DefaultListModel();  
-                Action createBlock = new AbstractAction()
-                {
-                public void actionPerformed(ActionEvent e)
-                {
-                    System.out.println(BS.toString()); 
-                    Calendar endDate = Calendar.getInstance(); 
-                    long end = endDate.getTimeInMillis() - 60000; 
-                    endDate.setTimeInMillis(end);   
-                    timeBlock block = new timeBlock(start, endDate, "New Block");
-                    BS.addBlock(block); 
-                    System.out.println("Added: START: "+block.getStartTimeString()+" END:"+block.getEndTimeString()); 
-                    System.out.println(BS.toString()); 
                 
-                }
-                };
-                inactivityListener listener = new inactivityListener(testgui2,createBlock, 20);
-                listener.start(); 
-                }
-                });
-                
+            }
+             }); 
+               /* while(working)
+                {
+                    Calendar currentBlockStart = listener.getStart(); 
+                    jProgressBar1.setValue(currentBlockStart.get(MINUTE));
+                }*/
+           
                 
             
             }
@@ -797,7 +832,6 @@ public class testgui2 extends javax.swing.JFrame {
     private javax.swing.JSpinner Day;
     private javax.swing.JSpinner Month;
     private javax.swing.JSpinner Year;
-    private javax.swing.JList<String> addedTimeBlocksList;
     private javax.swing.JTextField blockLabel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -811,6 +845,7 @@ public class testgui2 extends javax.swing.JFrame {
     private javax.swing.JSpinner endSeconds;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
@@ -846,7 +881,6 @@ public class testgui2 extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
@@ -861,6 +895,7 @@ public class testgui2 extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
     private java.awt.Label label1;
+    private java.awt.List list1;
     private javax.swing.JSpinner startHours;
     private javax.swing.JSpinner startMinutes;
     private javax.swing.JSpinner startSeconds;
