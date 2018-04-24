@@ -208,16 +208,9 @@ public class testgui2 extends javax.swing.JFrame {
         });
 
         importedBlockTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"TestBlock", null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
             new String [] {
                 "Description", "Date", "Start Time", "Duration"
-            }
+            }, 0
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
@@ -724,16 +717,32 @@ public class testgui2 extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //BS = new blockStorage();
         //timeBlock tb = new timeBlock("" + System.currentTimeMillis());
-        try{
-        BS.importFile("TimeBlocks.txt");
+        try
+        {
+            BS.importFile("TimeBlocks.txt");
+            DefaultTableModel model = (DefaultTableModel) importedBlockTable.getModel();
+
+            Set keys = BS.timeBlocks.keySet();
+            Iterator iter = keys.iterator();
+            while(iter.hasNext())
+            {
+                Integer key = (Integer) iter.next();
+                LinkedList l1 = BS.timeBlocks.get(key);
+
+                for (timeBlock elem : (Iterable<timeBlock>) l1)
+                {
+                    model.addRow(new Object[]{elem.getDescription(), elem.getStartString(), elem.getStartTimeString(), elem.getDuration()});
+                }
+            }
         }
         catch(FileNotFoundException e)
         {
             System.out.println("Cant find file"); 
         }
-        DefaultTableModel model = (DefaultTableModel) importedBlockTable.getModel();
+
+        //DefaultTableModel model = (DefaultTableModel) importedBlockTable.getModel();
         
-        model.addRow(new Object[]{"Column 1", "Column 2", "Column 3"});
+        //model.addRow(new Object[]{"Column 1", "Column 2", "Column 3", "Column 4"});
         
         
         
