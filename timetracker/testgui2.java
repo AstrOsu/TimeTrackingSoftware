@@ -60,7 +60,8 @@ public class testgui2 extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         importedBlockTable = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        jFileChooser2 = new javax.swing.JFileChooser();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jColorChooser1 = new javax.swing.JColorChooser();
         jLabel12 = new javax.swing.JLabel();
@@ -240,24 +241,20 @@ public class testgui2 extends javax.swing.JFrame {
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jLabel11)
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                        .addGap(351, 351, 351)
-                                        .addComponent(jButton2))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton3)
-                                        .addGap(144, 144, 144))))))
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(351, 351, 351)
+                                .addComponent(jButton2))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3)
+                                .addGap(144, 144, 144))))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
@@ -278,10 +275,17 @@ public class testgui2 extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Log", jLayeredPane1);
 
-        jFileChooser2.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
-        jFileChooser2.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setText("Export to CSV");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFileChooser2ActionPerformed(evt);
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Export to TXT");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
             }
         });
 
@@ -289,17 +293,21 @@ public class testgui2 extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
-                .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(109, 109, 109))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(189, 189, 189)
+                .addComponent(jButton4)
+                .addGap(57, 57, 57)
+                .addComponent(jButton5)
+                .addContainerGap(206, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(174, 174, 174)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Export", jPanel3);
@@ -756,22 +764,46 @@ public class testgui2 extends javax.swing.JFrame {
                     BS.addBlock(block); 
                     System.out.println("Added: START: "+block.getStartTimeString()+" END:"+block.getEndTimeString()); 
                     System.out.println(BS.toString()); 
-                    
+                    started = false;
                 
                 }
                 };
                 inactivityListener listener = new inactivityListener(new testgui2(),createBlock, 20);
-                listener.start();     
-                }
+                listener.start();  
     }//GEN-LAST:event_startButtonActionPerformed
-
-    private void jFileChooser2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFileChooser2ActionPerformed
 
     private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
                 started = false; 
     }//GEN-LAST:event_stopButtonActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        export txt = new export();
+        if (!BS.timeBlocks.isEmpty()) {
+            try {
+                txt.csvFile(BS, System.getProperty("user.home") + "/Desktop");
+            } catch (IOException ex) {
+                System.out.print("Error.");
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "No time blocks have been entered.", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        export txt = new export();
+        if (!BS.timeBlocks.isEmpty()) {
+            try {
+                txt.txtFile(BS, System.getProperty("user.home") + "/Desktop");
+            } catch (IOException ex) {
+                System.out.print("Error.");
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "No time blocks have been entered.", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -843,10 +875,11 @@ public class testgui2 extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
-    private javax.swing.JFileChooser jFileChooser2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame3;
