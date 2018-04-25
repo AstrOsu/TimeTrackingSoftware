@@ -730,6 +730,17 @@ public class testgui2 extends javax.swing.JFrame {
                 };
                 inactivityListener listener = new inactivityListener(new testgui2(),createBlock, 8);
                 listener.start(); 
+                
+                Action notification = new AbstractAction()
+                {
+                    public void actionPerformed(ActionEvent e)
+                    {
+                    notifications.notifs("You have been inactive for too long, "
+                            + "press OK to continue your session.", "Notification");                       
+                    }
+                };
+                inactivityListener notifListener = new inactivityListener(new testgui2(),notification, 4);
+                notifListener.start();
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void jFileChooser2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser2ActionPerformed
@@ -750,8 +761,7 @@ public class testgui2 extends javax.swing.JFrame {
             }
         }
         else {
-            JOptionPane.showMessageDialog(null, "No time blocks have been entered.", 
-                    "Error", JOptionPane.ERROR_MESSAGE);
+            notifications.notifs("No time blocks have been entered.", "Error");                       
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -765,8 +775,7 @@ public class testgui2 extends javax.swing.JFrame {
             }
         }
         else {
-            JOptionPane.showMessageDialog(null, "No time blocks have been entered.", 
-                    "Error", JOptionPane.ERROR_MESSAGE);
+            notifications.notifs("No time blocks have been entered.", "Error");  
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
