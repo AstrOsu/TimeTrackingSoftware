@@ -61,7 +61,7 @@ public class testgui2 extends javax.swing.JFrame {
         importButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         importedBlockTable = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        importSetFileName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -72,7 +72,7 @@ public class testgui2 extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         blockLabel = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        manualAddButton = new javax.swing.JButton();
         startHours = new javax.swing.JSpinner();
         startMinutes = new javax.swing.JSpinner();
         jLabel10 = new javax.swing.JLabel();
@@ -94,6 +94,8 @@ public class testgui2 extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        exportFileName = new javax.swing.JTextField();
+        label1 = new java.awt.Label();
         jPanel5 = new javax.swing.JPanel();
         jColorChooser1 = new javax.swing.JColorChooser();
         jLabel12 = new javax.swing.JLabel();
@@ -102,6 +104,8 @@ public class testgui2 extends javax.swing.JFrame {
         askCurrentDescription = new java.awt.Label();
         textField1 = new java.awt.TextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0));
+        askCurrentDescription1 = new java.awt.Label();
+        idleMinutesField = new java.awt.TextField();
         jLabel3 = new javax.swing.JLabel();
 
         jRadioButtonMenuItem1.setSelected(true);
@@ -230,21 +234,21 @@ public class testgui2 extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(importedBlockTable);
 
-        jTextField1.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        importSetFileName.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+        importSetFileName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                importSetFileNameActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("Set File Name:");
+        jLabel4.setText("Import File Name:");
 
         jLayeredPane1.setLayer(jPasswordField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(importButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(importSetFileName, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
@@ -267,7 +271,7 @@ public class testgui2 extends javax.swing.JFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel11))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(importSetFileName, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(importButton)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -282,7 +286,7 @@ public class testgui2 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(importButton)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(importSetFileName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
@@ -293,6 +297,8 @@ public class testgui2 extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
+
+        jLabel4.getAccessibleContext().setAccessibleName("Import File Name:");
 
         jTabbedPane1.addTab("Log", jLayeredPane1);
 
@@ -316,16 +322,16 @@ public class testgui2 extends javax.swing.JFrame {
 
         blockLabel.setBackground(javax.swing.UIManager.getDefaults().getColor("Desktop.background"));
 
-        jButton1.setForeground(javax.swing.UIManager.getDefaults().getColor("Desktop.background"));
-        jButton1.setText("Add Time Block");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        manualAddButton.setForeground(javax.swing.UIManager.getDefaults().getColor("Desktop.background"));
+        manualAddButton.setText("Add Time Block");
+        manualAddButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                manualAddButtonMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        manualAddButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                manualAddButtonActionPerformed(evt);
             }
         });
 
@@ -411,7 +417,7 @@ public class testgui2 extends javax.swing.JFrame {
                         .addGap(91, 91, 91))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
+                        .addComponent(manualAddButton)
                         .addGap(83, 83, 83)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -475,7 +481,7 @@ public class testgui2 extends javax.swing.JFrame {
                                     .addComponent(jLabel15)
                                     .addComponent(endSeconds, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(20, 20, 20)
-                                .addComponent(jButton1)))))
+                                .addComponent(manualAddButton)))))
                 .addGap(27, 27, 27))
         );
 
@@ -499,26 +505,38 @@ public class testgui2 extends javax.swing.JFrame {
             }
         });
 
+        label1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        label1.setForeground(new java.awt.Color(204, 204, 204));
+        label1.setText("Desired File Name : ");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(281, 281, 281)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton5)
-                    .addComponent(jButton4))
-                .addContainerGap(291, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(exportFileName)
+                    .addComponent(label1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(284, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(127, 127, 127)
+                .addGap(84, 84, 84)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(exportFileName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(jButton4)
-                .addGap(49, 49, 49)
+                .addGap(18, 18, 18)
                 .addComponent(jButton5)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
+
+        label1.getAccessibleContext().setAccessibleName(" Desired File Name: ");
 
         jTabbedPane1.addTab("Export", jPanel3);
 
@@ -578,6 +596,18 @@ public class testgui2 extends javax.swing.JFrame {
             }
         });
 
+        askCurrentDescription1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        askCurrentDescription1.setForeground(new java.awt.Color(204, 204, 204));
+        askCurrentDescription1.setText("Set Minutes of Inactivity: ");
+
+        idleMinutesField.setBackground(javax.swing.UIManager.getDefaults().getColor("Desktop.background"));
+        idleMinutesField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        idleMinutesField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idleMinutesFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -591,27 +621,29 @@ public class testgui2 extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(askCurrentDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(idleMinutesField, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(120, 120, 120)
+                                .addComponent(askCurrentDescription1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
                                 .addComponent(startButton)))))
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addGap(83, 83, 83))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(askCurrentDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textField1, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
-                        .addGap(44, 44, 44))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(askCurrentDescription, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(filler1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(askCurrentDescription1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(idleMinutesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         askCurrentDescription.getAccessibleContext().setAccessibleName("Enter Current Project Label:");
@@ -677,7 +709,7 @@ public class testgui2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void manualAddButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manualAddButtonMouseClicked
 
         String description = blockLabel.getText();
         System.out.println(description); 
@@ -698,7 +730,7 @@ public class testgui2 extends javax.swing.JFrame {
         
         // add block to list on side
         list1.add(description);
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_manualAddButtonMouseClicked
 
     private void startButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startButtonMouseClicked
         
@@ -708,9 +740,9 @@ public class testgui2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void manualAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manualAddButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_manualAddButtonActionPerformed
 
     private void importButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importButtonActionPerformed
         //BS = new blockStorage();
@@ -810,6 +842,10 @@ public class testgui2 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void idleMinutesFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idleMinutesFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idleMinutesFieldActionPerformed
+
 private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {
     }
     /**
@@ -879,6 +915,7 @@ private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JSpinner Month;
     private javax.swing.JSpinner Year;
     private java.awt.Label askCurrentDescription;
+    private java.awt.Label askCurrentDescription1;
     private javax.swing.JTextField blockLabel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -890,10 +927,12 @@ private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JSpinner endHours;
     private javax.swing.JSpinner endMinutes;
     private javax.swing.JSpinner endSeconds;
+    private javax.swing.JTextField exportFileName;
     private javax.swing.Box.Filler filler1;
+    private java.awt.TextField idleMinutesField;
     private javax.swing.JButton importButton;
+    private javax.swing.JTextField importSetFileName;
     private javax.swing.JTable importedBlockTable;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -934,8 +973,9 @@ private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTextField jTextField1;
+    private java.awt.Label label1;
     private java.awt.List list1;
+    private javax.swing.JButton manualAddButton;
     private javax.swing.JToggleButton startButton;
     private javax.swing.JSpinner startHours;
     private javax.swing.JSpinner startMinutes;
