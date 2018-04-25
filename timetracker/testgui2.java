@@ -61,7 +61,7 @@ public class testgui2 extends javax.swing.JFrame {
         importButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         importedBlockTable = new javax.swing.JTable();
-        importSetFileName = new javax.swing.JTextField();
+        importName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -234,10 +234,10 @@ public class testgui2 extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(importedBlockTable);
 
-        importSetFileName.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
-        importSetFileName.addActionListener(new java.awt.event.ActionListener() {
+        importName.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+        importName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                importSetFileNameActionPerformed(evt);
+                importNameActionPerformed(evt);
             }
         });
 
@@ -248,7 +248,7 @@ public class testgui2 extends javax.swing.JFrame {
         jLayeredPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(importButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(importSetFileName, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(importName, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
@@ -271,7 +271,7 @@ public class testgui2 extends javax.swing.JFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel11))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(importSetFileName, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(importName, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(importButton)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -286,7 +286,7 @@ public class testgui2 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(importButton)
-                    .addComponent(importSetFileName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(importName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
@@ -297,8 +297,6 @@ public class testgui2 extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-
-        jLabel4.getAccessibleContext().setAccessibleName("Import File Name:");
 
         jTabbedPane1.addTab("Log", jLayeredPane1);
 
@@ -516,10 +514,10 @@ public class testgui2 extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(281, 281, 281)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(exportFileName)
-                    .addComponent(label1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(label1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(284, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -749,7 +747,8 @@ public class testgui2 extends javax.swing.JFrame {
         //timeBlock tb = new timeBlock("" + System.currentTimeMillis());
         try
         {
-            BS.importFile("TimeBlocks.txt");
+            String fileName = importName.getText(); 
+            BS.importFile(fileName);
             DefaultTableModel model = (DefaultTableModel) importedBlockTable.getModel();
 
             Set keys = BS.timeBlocks.keySet();
@@ -780,7 +779,7 @@ public class testgui2 extends javax.swing.JFrame {
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
                      
-                startButton.setText("Working");
+                startButton.setText("Tracking");
                 Calendar start = Calendar.getInstance(); 
                 Action createBlock = new AbstractAction()
                 {
@@ -792,9 +791,8 @@ public class testgui2 extends javax.swing.JFrame {
                     endDate.setTimeInMillis(end);   
                     timeBlock block = new timeBlock(start, endDate, textField1.getText());
                     BS.addBlock(block); 
-                    System.out.println("Added: START: "+block.getStartTimeString()+" END:"+block.getEndTimeString()); 
-                    System.out.println(BS.toString()); 
                     
+                    //add to log 
                     DefaultTableModel model = (DefaultTableModel) importedBlockTable.getModel();
                     model.addRow(new Object[]{block.getDescription(), block.getStartString(), block.getStartTimeString(), block.getDurationString()});
                     startButton.setText("START");
@@ -820,14 +818,14 @@ public class testgui2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jFileChooser2ActionPerformed
 
     private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
-                started = false; 
+                
     }//GEN-LAST:event_stopButtonActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         export txt = new export();
         if (!BS.timeBlocks.isEmpty()) {
             try {
-                txt.csvFile(BS, System.getProperty("user.home") + "/Desktop", "Today's Blocks");
+                txt.csvFile(BS, System.getProperty("user.home") + "/Desktop", exportFileName.getText());
             } catch (IOException ex) {
                 System.out.print("Error.");
             }
@@ -835,13 +833,14 @@ public class testgui2 extends javax.swing.JFrame {
         else {
             notifications.notifs("No time blocks have been entered.", "Error");                       
         }
+        exportFileName.setText("");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         export txt = new export();
         if (!BS.timeBlocks.isEmpty()) {
             try {
-                txt.txtFile(BS, System.getProperty("user.home") + "/Desktop", "Today's Blocks");
+                txt.txtFile(BS, System.getProperty("user.home") + "/Desktop", exportFileName.getText());
             } catch (IOException ex) {
                 System.out.print("Error.");
             }
@@ -849,6 +848,7 @@ public class testgui2 extends javax.swing.JFrame {
         else {
             notifications.notifs("No time blocks have been entered.", "Error");  
         }
+        exportFileName.setText("");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void idleMinutesFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idleMinutesFieldActionPerformed
@@ -940,7 +940,7 @@ private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.Box.Filler filler1;
     private java.awt.TextField idleMinutesField;
     private javax.swing.JButton importButton;
-    private javax.swing.JTextField importSetFileName;
+    private javax.swing.JTextField importName;
     private javax.swing.JTable importedBlockTable;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
