@@ -826,6 +826,8 @@ public class testgui2 extends javax.swing.JFrame {
         if (!BS.timeBlocks.isEmpty()) {
             try {
                 txt.csvFile(BS, System.getProperty("user.home") + "/Desktop", exportFileName.getText());
+                notifications.notifs("Export complete.", "Success!");
+                
             } catch (IOException ex) {
                 System.out.print("Error.");
             }
@@ -841,6 +843,7 @@ public class testgui2 extends javax.swing.JFrame {
         if (!BS.timeBlocks.isEmpty()) {
             try {
                 txt.txtFile(BS, System.getProperty("user.home") + "/Desktop", exportFileName.getText());
+                notifications.notifs("Export complete.", "Success!");
             } catch (IOException ex) {
                 System.out.print("Error.");
             }
