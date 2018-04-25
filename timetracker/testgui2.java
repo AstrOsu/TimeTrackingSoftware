@@ -767,8 +767,11 @@ public class testgui2 extends javax.swing.JFrame {
         else {
             JOptionPane.showMessageDialog(null, "No time blocks have been entered.", 
                     "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
+private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {
+    }
     /**
      * @param args the command line arguments
      */
