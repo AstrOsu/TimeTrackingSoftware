@@ -744,7 +744,7 @@ public class testgui2 extends javax.swing.JFrame {
         export txt = new export();
         if (!BS.timeBlocks.isEmpty()) {
             try {
-                txt.csvFile(BS, System.getProperty("user.home") + "/Desktop");
+                txt.csvFile(BS, System.getProperty("user.home") + "/Desktop", "Today's Blocks");
             } catch (IOException ex) {
                 System.out.print("Error.");
             }
@@ -759,7 +759,7 @@ public class testgui2 extends javax.swing.JFrame {
         export txt = new export();
         if (!BS.timeBlocks.isEmpty()) {
             try {
-                txt.txtFile(BS, System.getProperty("user.home") + "/Desktop");
+                txt.txtFile(BS, System.getProperty("user.home") + "/Desktop", "Today's Blocks");
             } catch (IOException ex) {
                 System.out.print("Error.");
             }

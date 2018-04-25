@@ -52,9 +52,9 @@ public class export {
      * @throws IOException
      */
 
-    public void csvFile(blockStorage timeblock, String path) throws IOException {
+    public void csvFile(blockStorage timeblock, String path, String fileName) throws IOException {
         if (isValidPath(path)) {
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path + "/timeBlock.csv")));
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path + "/"+fileName+".csv")));
 
             List alKeys = new ArrayList(timeblock.timeBlocks.keySet());
             Collections.reverse(alKeys);
