@@ -60,7 +60,7 @@ public class testgui2 extends javax.swing.JFrame {
         importButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         importedBlockTable = new javax.swing.JTable();
-        importName = new javax.swing.JTextField();
+        importSetFileName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -98,7 +98,9 @@ public class testgui2 extends javax.swing.JFrame {
         textField1 = new java.awt.TextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0));
         askCurrentDescription1 = new java.awt.Label();
-        idleMinutesSpinner = new javax.swing.JSpinner();
+        idleMinutesField = new java.awt.TextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
 
         jRadioButtonMenuItem1.setSelected(true);
@@ -215,8 +217,7 @@ public class testgui2 extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(importedBlockTable);
 
-        importName.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
-        importName.addActionListener(new java.awt.event.ActionListener() {
+        importSetFileName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 importNameActionPerformed(evt);
             }
@@ -228,7 +229,7 @@ public class testgui2 extends javax.swing.JFrame {
         jLayeredPane1.setLayer(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(importButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(importName, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(importSetFileName, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
@@ -264,10 +265,11 @@ public class testgui2 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(importButton)
-                    .addComponent(importName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(importButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(importSetFileName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -681,9 +683,9 @@ public class testgui2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formMouseClicked
 
-    private void manualAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manualAddButtonActionPerformed
+    private void manualAddButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
-    }//GEN-LAST:event_manualAddButtonActionPerformed
+    }                                               
 
     private void importNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manualAddButtonActionPerformed
         // TODO add your handling code here:
@@ -882,9 +884,9 @@ private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JSpinner endSeconds;
     private javax.swing.JTextField exportFileName;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JSpinner idleMinutesSpinner;
+    private java.awt.TextField idleMinutesField;
     private javax.swing.JButton importButton;
-    private javax.swing.JTextField importName;
+    private javax.swing.JTextField importSetFileName;
     private javax.swing.JTable importedBlockTable;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
