@@ -187,6 +187,8 @@ public class testgui2 extends javax.swing.JFrame {
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         jTabbedPane1.setToolTipText("Menu");
 
+        jLayeredPane1.setOpaque(true);
+
         jPasswordField1.setText("jPasswordField1");
         jPasswordField1.addActionListener(new java.awt.event.ActionListener()
         {
@@ -853,12 +855,14 @@ public class testgui2 extends javax.swing.JFrame {
     private void changeColorMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_changeColorMouseClicked
     {//GEN-HEADEREND:event_changeColorMouseClicked
         Color newColor = colorChooser.getColor();
+        
         jPanel1.setBackground(newColor);
         jPanel2.setBackground(newColor);
         //jPanel3.setBackground(newColor);
         //jPanel4.setBackground(newColor);
         //jPanel5.setBackground(newColor);
         jPanel6.setBackground(newColor);
+        
         
     }//GEN-LAST:event_changeColorMouseClicked
 
