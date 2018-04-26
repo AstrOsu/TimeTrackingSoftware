@@ -105,7 +105,7 @@ public class testgui2 extends javax.swing.JFrame {
         textField1 = new java.awt.TextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0));
         askCurrentDescription1 = new java.awt.Label();
-        idleMinutesField = new java.awt.TextField();
+        idleMinutesSpinner = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
 
         jRadioButtonMenuItem1.setSelected(true);
@@ -218,7 +218,7 @@ public class testgui2 extends javax.swing.JFrame {
         importedBlockTable.setForeground(new java.awt.Color(204, 204, 204));
         importedBlockTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"TestBlock", null, null, null}
+
             },
             new String [] {
                 "Description", "Date", "Start Time", "Duration"
@@ -598,14 +598,6 @@ public class testgui2 extends javax.swing.JFrame {
         askCurrentDescription1.setForeground(new java.awt.Color(204, 204, 204));
         askCurrentDescription1.setText("Set Minutes of Inactivity: ");
 
-        idleMinutesField.setBackground(javax.swing.UIManager.getDefaults().getColor("Desktop.background"));
-        idleMinutesField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        idleMinutesField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idleMinutesFieldActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -619,11 +611,12 @@ public class testgui2 extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(askCurrentDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(idleMinutesField, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(askCurrentDescription1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(idleMinutesSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
                                 .addComponent(startButton)))))
                 .addGap(83, 83, 83))
         );
@@ -634,14 +627,13 @@ public class testgui2 extends javax.swing.JFrame {
                     .addComponent(askCurrentDescription, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(filler1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(askCurrentDescription1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(idleMinutesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(startButton, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addComponent(askCurrentDescription1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idleMinutesSpinner))
+                .addGap(0, 22, Short.MAX_VALUE))
         );
 
         askCurrentDescription.getAccessibleContext().setAccessibleName("Enter Current Project Label:");
@@ -781,13 +773,13 @@ public class testgui2 extends javax.swing.JFrame {
                      
                 startButton.setText("Tracking");
                 Calendar start = Calendar.getInstance(); 
+                int idleMinutes = (Integer)idleMinutesSpinner.getValue(); 
                 Action createBlock = new AbstractAction()
                 {
                 public void actionPerformed(ActionEvent e)
                 {
-                    System.out.println(BS.toString());
                     Calendar endDate = Calendar.getInstance(); 
-                    long end = endDate.getTimeInMillis() - 60000; 
+                    long end = endDate.getTimeInMillis() - (idleMinutes*60000); 
                     endDate.setTimeInMillis(end);   
                     timeBlock block = new timeBlock(start, endDate, textField1.getText());
                     BS.addBlock(block); 
@@ -798,7 +790,7 @@ public class testgui2 extends javax.swing.JFrame {
                     startButton.setText("START");
                 }
                 };
-                inactivityListener listener = new inactivityListener(new testgui2(),createBlock, 8);
+                inactivityListener listener = new inactivityListener(new testgui2(),createBlock, idleMinutes);
                 listener.start(); 
                 
                 Action notification = new AbstractAction()
@@ -809,7 +801,8 @@ public class testgui2 extends javax.swing.JFrame {
                             + "press OK to continue your session.", "Notification");                       
                     }
                 };
-                inactivityListener notifListener = new inactivityListener(new testgui2(),notification, 4);
+                int notifMinutes = idleMinutes/2; 
+                inactivityListener notifListener = new inactivityListener(new testgui2(),notification, notifMinutes);
                 notifListener.start();
     }//GEN-LAST:event_startButtonActionPerformed
 
@@ -850,10 +843,6 @@ public class testgui2 extends javax.swing.JFrame {
         }
         exportFileName.setText("");
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void idleMinutesFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idleMinutesFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idleMinutesFieldActionPerformed
 
 private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {
     }
@@ -938,7 +927,7 @@ private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JSpinner endSeconds;
     private javax.swing.JTextField exportFileName;
     private javax.swing.Box.Filler filler1;
-    private java.awt.TextField idleMinutesField;
+    private javax.swing.JSpinner idleMinutesSpinner;
     private javax.swing.JButton importButton;
     private javax.swing.JTextField importName;
     private javax.swing.JTable importedBlockTable;
