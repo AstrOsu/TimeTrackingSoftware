@@ -798,11 +798,10 @@ public class testgui2 extends javax.swing.JFrame {
                     public void actionPerformed(ActionEvent e)
                     {
                     notifications.notifs("You have been inactive for too long, "
-                            + "press OK to continue your session.", "Notification");                       
+                            + "Press start again to start new session.", "Notification");                       
                     }
-                };
-                int notifMinutes = idleMinutes/2; 
-                inactivityListener notifListener = new inactivityListener(new testgui2(),notification, notifMinutes);
+                }; 
+                inactivityListener notifListener = new inactivityListener(new testgui2(),notification, idleMinutes);
                 notifListener.start();
     }//GEN-LAST:event_startButtonActionPerformed
 
