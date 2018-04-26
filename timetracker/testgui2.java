@@ -98,8 +98,8 @@ public class testgui2 extends javax.swing.JFrame {
         textField1 = new java.awt.TextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0));
         askCurrentDescription1 = new java.awt.Label();
-        idleMinutesField = new java.awt.TextField();
         jSeparator2 = new javax.swing.JSeparator();
+        jSpinner2 = new javax.swing.JSpinner();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
 
@@ -208,7 +208,7 @@ public class testgui2 extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -306,26 +306,32 @@ public class testgui2 extends javax.swing.JFrame {
             }
         });
 
-        startHours.setModel(new javax.swing.SpinnerNumberModel(0, 0, 24, 1));
+        startHours.setModel(new javax.swing.SpinnerNumberModel(1, 1, 24, 1));
 
-        startMinutes.setModel(new javax.swing.SpinnerNumberModel(1, 1, 59, 1));
+        startMinutes.setModel(new javax.swing.SpinnerNumberModel(10, 1, 59, 1));
 
         jLabel10.setText("Seconds:");
 
-        startSeconds.setModel(new javax.swing.SpinnerNumberModel(0, 0, 60, 1));
+        startSeconds.setModel(new javax.swing.SpinnerNumberModel(10, 1, 59, 1));
 
         jLabel1.setForeground(new java.awt.Color(57, 113, 140));
         jLabel1.setText("End Time: ");
 
         jLabel13.setText("Hours: ");
 
+        endHours.setModel(new javax.swing.SpinnerNumberModel(2, 1, 24, 1));
+
         jLabel14.setText("Minutes:");
 
         jLabel15.setText("Seconds:");
 
+        endMinutes.setModel(new javax.swing.SpinnerNumberModel(10, 0, 59, 1));
+
+        endSeconds.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+
         list1.setBackground(java.awt.Color.white);
 
-        jSpinner1.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(1524699599658L), null, java.util.Calendar.DAY_OF_MONTH));
+        jSpinner1.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.DAY_OF_YEAR));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -366,7 +372,7 @@ public class testgui2 extends javax.swing.JFrame {
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(startSeconds, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -418,7 +424,7 @@ public class testgui2 extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Time Blocks", jPanel4);
+        jTabbedPane1.addTab("Manual", jPanel4);
 
         jButton4.setForeground(javax.swing.UIManager.getDefaults().getColor("Desktop.background"));
         jButton4.setText("Export to CSV");
@@ -451,13 +457,14 @@ public class testgui2 extends javax.swing.JFrame {
                         .addComponent(exportFileName, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(249, 249, 249))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(287, 287, 287))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(300, 300, 300))))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -506,7 +513,7 @@ public class testgui2 extends javax.swing.JFrame {
         jTabbedPane1.addTab("Settings", jPanel5);
 
         startButton.setForeground(javax.swing.UIManager.getDefaults().getColor("Desktop.background"));
-        startButton.setText("START WORKING");
+        startButton.setText("START TRACKING");
         startButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 startButtonMouseClicked(evt);
@@ -532,13 +539,7 @@ public class testgui2 extends javax.swing.JFrame {
         askCurrentDescription1.setForeground(new java.awt.Color(0, 0, 0));
         askCurrentDescription1.setText("Set Minutes of Inactivity: ");
 
-        idleMinutesField.setBackground(java.awt.Color.white);
-        idleMinutesField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        idleMinutesField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idleMinutesFieldActionPerformed(evt);
-            }
-        });
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -553,14 +554,16 @@ public class testgui2 extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(askCurrentDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(idleMinutesField, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(askCurrentDescription1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(askCurrentDescription1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(startButton)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(142, 142, 142))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -572,17 +575,14 @@ public class testgui2 extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(askCurrentDescription, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(filler1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(askCurrentDescription1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(idleMinutesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(askCurrentDescription1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -612,9 +612,9 @@ public class testgui2 extends javax.swing.JFrame {
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addGap(32, 32, 32))
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("Menu");
@@ -642,7 +642,7 @@ public class testgui2 extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addContainerGap())
         );
 
         pack();
@@ -654,22 +654,25 @@ public class testgui2 extends javax.swing.JFrame {
 
     private void manualAddButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manualAddButtonMouseClicked
 
-        String description = blockLabel.getText();
-        System.out.println(description); 
+        String description = blockLabel.getText(); 
+        Date suppliedDate = (Date)jSpinner1.getValue(); 
         Calendar start = Calendar.getInstance(); 
-        start.set((Integer)Year.getValue(), (Integer)Month.getValue(), (Integer)Day.getValue(), 
-                (Integer)startHours.getValue(), (Integer)startMinutes.getValue(), (Integer)startSeconds.getValue());
+        start.setTime(suppliedDate);
+        start.set(Calendar.HOUR_OF_DAY, (int)startHours.getValue());
+        start.set(Calendar.MINUTE, (int)startMinutes.getValue());
+        start.set(Calendar.SECOND, (int)startSeconds.getValue());
+        
         Calendar end = Calendar.getInstance(); 
-        end.set((Integer)Year.getValue(), (Integer)Month.getValue(), (Integer)Day.getValue(), 
-                (Integer)endHours.getValue(), (Integer)endMinutes.getValue(), (Integer)endSeconds.getValue());
+        end.setTime(suppliedDate);
+        start.set(Calendar.HOUR_OF_DAY, (int)endHours.getValue());
+        start.set(Calendar.MINUTE, (int)endMinutes.getValue());
+        start.set(Calendar.SECOND, (int)endSeconds.getValue());
         timeBlock block = new timeBlock(start, end, description); 
-        System.out.println("JUST ADDED:"+ block.toString()); 
         BS.addBlock(block);
-        System.out.println("CURRENT BS:"+BS.toString()); 
         
         //add to log
         DefaultTableModel model = (DefaultTableModel) importedBlockTable.getModel();
-        model.addRow(new Object[]{block.getDescription(), block.getStartString(), block.getDurationString()});
+        model.addRow(new Object[]{block.getDescription(), block.getStartString(), block.getStartTimeString(),block.getDurationString()});
         
         // add block to list on side
         list1.add(description);
@@ -692,8 +695,7 @@ public class testgui2 extends javax.swing.JFrame {
     }//GEN-LAST:event_manualAddButtonActionPerformed
     
     private void importButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importButtonActionPerformed
-        //BS = new blockStorage();
-        //timeBlock tb = new timeBlock("" + System.currentTimeMillis());
+        
         try
         {
             String fileName = importName.getText(); 
@@ -717,10 +719,6 @@ public class testgui2 extends javax.swing.JFrame {
         {
             System.out.println("Cant find file"); 
         }
-
-        //DefaultTableModel model = (DefaultTableModel) importedBlockTable.getModel();
-        
-        //model.addRow(new Object[]{"Column 1", "Column 2", "Column 3", "Column 4"});
         
         
         
@@ -731,7 +729,7 @@ public class testgui2 extends javax.swing.JFrame {
                 startButton.setSelected(false);
                 startButton.setText("Tracking");
                 Calendar start = Calendar.getInstance(); 
-                int idleMinutes = (Integer)idleMinutesSpinner.getValue(); 
+                int idleMinutes = (Integer)jSpinner2.getValue(); 
                 Action createBlock = new AbstractAction()
                 {
                 public void actionPerformed(ActionEvent e)
@@ -745,7 +743,7 @@ public class testgui2 extends javax.swing.JFrame {
                     //add to log 
                     DefaultTableModel model = (DefaultTableModel) importedBlockTable.getModel();
                     model.addRow(new Object[]{block.getDescription(), block.getStartString(), block.getStartTimeString(), block.getDurationString()});
-                    startButton.setText("START");
+                    startButton.setText("START TRACKING");
                 }
                 };
                 inactivityListener listener = new inactivityListener(new testgui2(),createBlock, idleMinutes);
@@ -756,7 +754,7 @@ public class testgui2 extends javax.swing.JFrame {
                     public void actionPerformed(ActionEvent e)
                     {
                     notifications.notifs("You have been inactive for too long, "
-                            + "Press start again to start new session.", "Notification");                       
+                            + "Press start tracking again to start new session.", "Notification");                       
                     }
                 }; 
                 inactivityListener notifListener = new inactivityListener(new testgui2(),notification, idleMinutes);
@@ -853,11 +851,6 @@ private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {
                 
             }
              }); 
-               /* while(working)
-                {
-                    Calendar currentBlockStart = listener.getStart(); 
-                    jProgressBar1.setValue(currentBlockStart.get(MINUTE));
-                }*/
            
                 
             
@@ -884,7 +877,6 @@ private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JSpinner endSeconds;
     private javax.swing.JTextField exportFileName;
     private javax.swing.Box.Filler filler1;
-    private java.awt.TextField idleMinutesField;
     private javax.swing.JButton importButton;
     private javax.swing.JTextField importName;
     private javax.swing.JTable importedBlockTable;
@@ -924,6 +916,7 @@ private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private java.awt.Label label1;
