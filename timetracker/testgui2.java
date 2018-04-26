@@ -734,6 +734,10 @@ public class testgui2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_manualAddButtonActionPerformed
 
+    private void importNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manualAddButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_manualAddButtonActionPerformed
+    
     private void importButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importButtonActionPerformed
         //BS = new blockStorage();
         //timeBlock tb = new timeBlock("" + System.currentTimeMillis());
