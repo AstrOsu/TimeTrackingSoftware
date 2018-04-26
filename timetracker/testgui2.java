@@ -770,7 +770,8 @@ public class testgui2 extends javax.swing.JFrame {
     }//GEN-LAST:event_importButtonActionPerformed
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-                     
+                
+                startButton.setSelected(false);
                 startButton.setText("Tracking");
                 Calendar start = Calendar.getInstance(); 
                 int idleMinutes = (Integer)idleMinutesSpinner.getValue(); 
