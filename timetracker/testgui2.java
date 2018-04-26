@@ -5,6 +5,7 @@
  */
 package timetracker;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 import javax.swing.table.*;
@@ -35,7 +36,8 @@ public class testgui2 extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
@@ -90,8 +92,9 @@ public class testgui2 extends javax.swing.JFrame {
         exportFileName = new javax.swing.JTextField();
         label1 = new java.awt.Label();
         jPanel5 = new javax.swing.JPanel();
-        jColorChooser1 = new javax.swing.JColorChooser();
+        colorChooser = new javax.swing.JColorChooser();
         jLabel12 = new javax.swing.JLabel();
+        changeColor = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         startButton = new javax.swing.JToggleButton();
         askCurrentDescription = new java.awt.Label();
@@ -173,8 +176,10 @@ public class testgui2 extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 formMouseClicked(evt);
             }
         });
@@ -183,8 +188,10 @@ public class testgui2 extends javax.swing.JFrame {
         jTabbedPane1.setToolTipText("Menu");
 
         jPasswordField1.setText("jPasswordField1");
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jPasswordField1ActionPerformed(evt);
             }
         });
@@ -192,33 +199,42 @@ public class testgui2 extends javax.swing.JFrame {
         jLabel11.setText("Enter Administrator Password to edit computed duration time:");
 
         importButton.setText("Import");
-        importButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        importButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 importButtonActionPerformed(evt);
             }
         });
 
         importedBlockTable.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
         importedBlockTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
 
             },
-            new String [] {
+            new String []
+            {
                 "Description", "Date", "Start Time", "Duration"
             }
-        ) {
-            Class[] types = new Class [] {
+        )
+        {
+            Class[] types = new Class []
+            {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
-            public Class getColumnClass(int columnIndex) {
+            public Class getColumnClass(int columnIndex)
+            {
                 return types [columnIndex];
             }
         });
         jScrollPane2.setViewportView(importedBlockTable);
 
-        importName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        importName.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 importNameActionPerformed(evt);
             }
         });
@@ -295,13 +311,17 @@ public class testgui2 extends javax.swing.JFrame {
 
         manualAddButton.setForeground(javax.swing.UIManager.getDefaults().getColor("Desktop.background"));
         manualAddButton.setText("Add Time Block");
-        manualAddButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        manualAddButton.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 manualAddButtonMouseClicked(evt);
             }
         });
-        manualAddButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        manualAddButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 manualAddButtonActionPerformed(evt);
             }
         });
@@ -428,16 +448,20 @@ public class testgui2 extends javax.swing.JFrame {
 
         jButton4.setForeground(javax.swing.UIManager.getDefaults().getColor("Desktop.background"));
         jButton4.setText("Export to CSV");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton4.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton4ActionPerformed(evt);
             }
         });
 
         jButton5.setForeground(javax.swing.UIManager.getDefaults().getColor("Desktop.background"));
         jButton5.setText("Export to TXT");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton5.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton5ActionPerformed(evt);
             }
         });
@@ -486,6 +510,15 @@ public class testgui2 extends javax.swing.JFrame {
 
         jLabel12.setText("Interface Color Changer");
 
+        changeColor.setText("Change Color");
+        changeColor.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                changeColorMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -497,30 +530,42 @@ public class testgui2 extends javax.swing.JFrame {
                         .addComponent(jLabel12))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(jColorChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(147, Short.MAX_VALUE))
+                        .addComponent(colorChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(changeColor)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jColorChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(colorChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(28, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(changeColor)
+                        .addGap(108, 108, 108))))
         );
 
         jTabbedPane1.addTab("Settings", jPanel5);
 
         startButton.setForeground(javax.swing.UIManager.getDefaults().getColor("Desktop.background"));
         startButton.setText("START TRACKING");
-        startButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        startButton.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 startButtonMouseClicked(evt);
             }
         });
-        startButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        startButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 startButtonActionPerformed(evt);
             }
         });
@@ -530,8 +575,10 @@ public class testgui2 extends javax.swing.JFrame {
 
         textField1.setBackground(java.awt.Color.white);
         textField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        textField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        textField1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 textField1ActionPerformed(evt);
             }
         });
@@ -769,6 +816,7 @@ public class testgui2 extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_stopButtonActionPerformed
 
+    
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         export txt = new export();
         if (!BS.timeBlocks.isEmpty()) {
@@ -801,6 +849,18 @@ public class testgui2 extends javax.swing.JFrame {
         }
         exportFileName.setText("");
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void changeColorMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_changeColorMouseClicked
+    {//GEN-HEADEREND:event_changeColorMouseClicked
+        Color newColor = colorChooser.getColor();
+        jPanel1.setBackground(newColor);
+        jPanel2.setBackground(newColor);
+        //jPanel3.setBackground(newColor);
+        //jPanel4.setBackground(newColor);
+        //jPanel5.setBackground(newColor);
+        jPanel6.setBackground(newColor);
+        
+    }//GEN-LAST:event_changeColorMouseClicked
 
 private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {
     }
@@ -872,6 +932,8 @@ private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.ButtonGroup buttonGroup6;
     private javax.swing.ButtonGroup buttonGroup7;
+    private javax.swing.JButton changeColor;
+    private javax.swing.JColorChooser colorChooser;
     private javax.swing.JSpinner endHours;
     private javax.swing.JSpinner endMinutes;
     private javax.swing.JSpinner endSeconds;
@@ -882,7 +944,6 @@ private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JTable importedBlockTable;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JFrame jFrame1;
