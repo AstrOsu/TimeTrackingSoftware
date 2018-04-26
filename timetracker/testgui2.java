@@ -60,7 +60,7 @@ public class testgui2 extends javax.swing.JFrame {
         importButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         importedBlockTable = new javax.swing.JTable();
-        importSetFileName = new javax.swing.JTextField();
+        importName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -98,9 +98,7 @@ public class testgui2 extends javax.swing.JFrame {
         textField1 = new java.awt.TextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0));
         askCurrentDescription1 = new java.awt.Label();
-        idleMinutesField = new java.awt.TextField();
-        jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
+        idleMinutesSpinner = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
 
         jRadioButtonMenuItem1.setSelected(true);
@@ -217,9 +215,10 @@ public class testgui2 extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(importedBlockTable);
 
-        importSetFileName.addActionListener(new java.awt.event.ActionListener() {
+        importName.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+        importName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                importSetFileNameActionPerformed(evt);
+                importNameActionPerformed(evt);
             }
         });
 
@@ -229,7 +228,7 @@ public class testgui2 extends javax.swing.JFrame {
         jLayeredPane1.setLayer(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(importButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(importSetFileName, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(importName, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
@@ -267,7 +266,7 @@ public class testgui2 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(importButton)
-                    .addComponent(importSetFileName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(importName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -686,12 +685,17 @@ public class testgui2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_manualAddButtonActionPerformed
 
+    private void importNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manualAddButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_manualAddButtonActionPerformed
+    
     private void importButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importButtonActionPerformed
         //BS = new blockStorage();
         //timeBlock tb = new timeBlock("" + System.currentTimeMillis());
         try
         {
-            BS.importFile("TimeBlocks.txt");
+            String fileName = importName.getText(); 
+            BS.importFile(fileName);
             DefaultTableModel model = (DefaultTableModel) importedBlockTable.getModel();
 
             Set keys = BS.timeBlocks.keySet();
@@ -721,28 +725,28 @@ public class testgui2 extends javax.swing.JFrame {
     }//GEN-LAST:event_importButtonActionPerformed
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-                     
-                startButton.setText("Working");
+                
+                startButton.setSelected(false);
+                startButton.setText("Tracking");
                 Calendar start = Calendar.getInstance(); 
+                int idleMinutes = (Integer)idleMinutesSpinner.getValue(); 
                 Action createBlock = new AbstractAction()
                 {
                 public void actionPerformed(ActionEvent e)
                 {
-                    System.out.println(BS.toString());
                     Calendar endDate = Calendar.getInstance(); 
-                    long end = endDate.getTimeInMillis() - 60000; 
+                    long end = endDate.getTimeInMillis() - (idleMinutes*60000); 
                     endDate.setTimeInMillis(end);   
                     timeBlock block = new timeBlock(start, endDate, textField1.getText());
                     BS.addBlock(block); 
-                    System.out.println("Added: START: "+block.getStartTimeString()+" END:"+block.getEndTimeString()); 
-                    System.out.println(BS.toString()); 
                     
+                    //add to log 
                     DefaultTableModel model = (DefaultTableModel) importedBlockTable.getModel();
                     model.addRow(new Object[]{block.getDescription(), block.getStartString(), block.getStartTimeString(), block.getDurationString()});
                     startButton.setText("START");
                 }
                 };
-                inactivityListener listener = new inactivityListener(new testgui2(),createBlock, 8);
+                inactivityListener listener = new inactivityListener(new testgui2(),createBlock, idleMinutes);
                 listener.start(); 
                 
                 Action notification = new AbstractAction()
@@ -750,10 +754,10 @@ public class testgui2 extends javax.swing.JFrame {
                     public void actionPerformed(ActionEvent e)
                     {
                     notifications.notifs("You have been inactive for too long, "
-                            + "press OK to continue your session.", "Notification");                       
+                            + "Press start again to start new session.", "Notification");                       
                     }
-                };
-                inactivityListener notifListener = new inactivityListener(new testgui2(),notification, 4);
+                }; 
+                inactivityListener notifListener = new inactivityListener(new testgui2(),notification, idleMinutes);
                 notifListener.start();
     }//GEN-LAST:event_startButtonActionPerformed
 
@@ -762,14 +766,16 @@ public class testgui2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jFileChooser2ActionPerformed
 
     private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
-                started = false; 
+                
     }//GEN-LAST:event_stopButtonActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         export txt = new export();
         if (!BS.timeBlocks.isEmpty()) {
             try {
-                txt.csvFile(BS, System.getProperty("user.home") + "/Desktop", "Today's Blocks");
+                txt.csvFile(BS, System.getProperty("user.home") + "/Desktop", exportFileName.getText());
+                notifications.notifs("Export complete.", "Success!");
+                
             } catch (IOException ex) {
                 System.out.print("Error.");
             }
@@ -777,13 +783,15 @@ public class testgui2 extends javax.swing.JFrame {
         else {
             notifications.notifs("No time blocks have been entered.", "Error");                       
         }
+        exportFileName.setText("");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         export txt = new export();
         if (!BS.timeBlocks.isEmpty()) {
             try {
-                txt.txtFile(BS, System.getProperty("user.home") + "/Desktop", "Today's Blocks");
+                txt.txtFile(BS, System.getProperty("user.home") + "/Desktop", exportFileName.getText());
+                notifications.notifs("Export complete.", "Success!");
             } catch (IOException ex) {
                 System.out.print("Error.");
             }
@@ -791,11 +799,8 @@ public class testgui2 extends javax.swing.JFrame {
         else {
             notifications.notifs("No time blocks have been entered.", "Error");  
         }
+        exportFileName.setText("");
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void idleMinutesFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idleMinutesFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idleMinutesFieldActionPerformed
 
 private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {
     }
@@ -877,9 +882,9 @@ private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JSpinner endSeconds;
     private javax.swing.JTextField exportFileName;
     private javax.swing.Box.Filler filler1;
-    private java.awt.TextField idleMinutesField;
+    private javax.swing.JSpinner idleMinutesSpinner;
     private javax.swing.JButton importButton;
-    private javax.swing.JTextField importSetFileName;
+    private javax.swing.JTextField importName;
     private javax.swing.JTable importedBlockTable;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
